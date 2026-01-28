@@ -542,8 +542,9 @@ function cerrarCarrito() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function checkout() {
+async function checkout() {
   const total = calcularTotal();
+
   if (total <= 0) {
     Swal.fire({
       icon: "info",
@@ -553,13 +554,42 @@ function checkout() {
     return;
   }
 
+  const res = await Swal.fire({
+    icon: "success",
+    title: "¿Confirmar compra?",
+    html: `Total a pagar: <b>${eur(total)}</b>`,
+    showCancelButton: true,
+    confirmButtonText: "Confirmar",
+    cancelButtonText: "Cancelar",
+    confirmButtonColor: "#ffffff",
+    cancelButtonColor: "#333",
+    background: "#11131a",
+    color: "#e9e9ee",
+  });
+
+  if (!res.isConfirmed) return;
+
+  // ✅ “Compra realizada”: vaciar carrito + reset cupón
+  carrito = [];
+  cupon = { codigo: "", porcentaje: 0 };
+  inputCupon.value = "";
+
+  renderCarrito();
+
   Swal.fire({
     icon: "success",
-    title: "Compra simulada ✅",
-    html: `Total pagado: <b>${eur(total)}</b>`,
-    confirmButtonText: "Ok",
+    title: "Compra realizada ✅",
+    text: "Gracias por tu compra. El carrito se ha vaciado.",
+    timer: 1400,
+    showConfirmButton: false,
+    background: "#11131a",
+    color: "#e9e9ee",
   });
+
+  // opcional: subir arriba
+  // window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 
 // ==============================
 // Init
