@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0">
+		<title>MINIMAL</title>
+		<link rel="stylesheet" href="styles.css">
+
+
+		<!-- SweetAlert2 -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	</head>
+
+
+	<body>
+		<header class="topbar">
+		<div class="brand">
+			<img src="assets/logo-minimal.svg"
+				alt="MINIMAL"
+				class="logo">
+</div>
+			</div>
+
+
+			<div class="actions">
+				<div class="dropdown">
+					<button class="dropdown-toggle"
+						id="dropdownToggle">
+						<span class="dropdown-label">Todas</span>
+						<span class="arrow">▾</span>
+					</button>
+					<div class="dropdown-menu"
+						id="dropdownMenu"></div>
+					<div class="dropdown-overlay"
+						id="dropdownOverlay"></div>
+				</div>
+
+
+				<button id="btnAbrirCarrito"
+					class="cart-btn"
+					aria-label="Abrir carrito">
+					<span class="cart-icon">🛍️</span>
+					<span class="cart-info">
+						<span id="contadorCarrito"
+							class="pill">
+							0
+						</span>
+						<span id="totalTop"
+							class="total-top">
+							0,00 €
+						</span>
+					</span>
+				</button>
+			</div>
+		</header>
+
+
+		<main class="layout">
+			<section class="products">
+				<div class="section-head">
+					<h2>Productos</h2>
+					<p class="muted">
+						Aqui puedes observar todos los productos de nuestra tienda
+					</p>
+				</div>
+
+
+				<div id="gridProductos"
+					class="grid"></div>
+			</section>
+
+
+			<aside class="cart"
+				id="panelCarrito">
+				<div class="cart-head">
+					<div>
+						<h2>Carrito</h2>
+						<p class="muted">
+							<span id="itemsCarrito">0</span>
+							artículos
+						</p>
+					</div>
+					<button id="btnCerrarCarrito"
+						class="icon-btn"
+						title="Cerrar">
+						✕
+					</button>
+				</div>
+
+
+				<div class="cart-body">
+					<div id="listaCarrito"
+						class="cart-list"></div>
+
+
+					<div class="coupon">
+						<label for="inputCupon">Cupón</label>
+						<div class="coupon-row">
+							<input id="inputCupon"
+								type="text"
+								placeholder="Ej: MINIMAL10">
+							<button id="btnAplicarCupon"
+								class="btn secondary">
+								Aplicar
+							</button>
+						</div>
+						<p class="muted small">
+							Cupones de demo:
+							<b>MINIMAL10</b>
+							(10%),
+							<b>APPLE15</b>
+							(15%).
+						</p>
+					</div>
+
+
+					<div class="totals">
+						<div class="line">
+							<span>Subtotal</span>
+							<span id="subtotal">0,00 €</span>
+						</div>
+						<div class="line">
+							<span>Descuento</span>
+							<span id="descuento">-0,00 €</span>
+						</div>
+						<div class="line">
+							<span>Envío</span>
+							<span id="envio">—</span>
+						</div>
+						<div class="line total">
+							<span>Total</span>
+							<span id="totalCarrito">0,00 €</span>
+						</div>
+						<p id="mensajeEnvio"
+							class="muted small"></p>
+					</div>
+				</div>
+
+
+				<div class="cart-footer">
+					<button id="btnVaciar"
+						class="btn danger">
+						Vaciar carrito
+					</button>
+					<button id="btnCheckout"
+						class="btn primary">
+						Finalizar compra
+					</button>
+				</div>
+			</aside>
+		</main>
+
+
+		<footer class="footer">
+			<p class="muted">
+				Miguel Angel Alonso Valhondo - MINIMAL - 2026
+			</p>
+		</footer>
+
+
+		<!-- QUICK VIEW MODAL -->
+		<div class="qv-overlay"
+			id="qvOverlay"></div>
+
+
+		<div class="qv-modal"
+			id="qvModal"
+			aria-hidden="true">
+			<button class="qv-close"
+				id="qvClose"
+				aria-label="Cerrar">
+				✕
+			</button>
+
+
+			<div class="qv-media">
+				<img id="qvImg"
+					src
+					alt>
+			</div>
+
+
+			<div class="qv-info">
+				<div class="qv-top">
+					<span class="qv-badge"
+						id="qvCat"></span>
+					<h3 id="qvName"></h3>
+					<p class="qv-muted">
+						Fotografía de producto · estética minimal.
+					</p>
+				</div>
+
+
+				<div class="qv-bottom">
+					<div class="qv-price"
+						id="qvPrice"></div>
+
+
+					<div class="qv-actions">
+						<button class="btn secondary"
+							id="qvAdd">
+							Añadir al carrito
+						</button>
+						<button class="btn primary"
+							id="qvBuy">
+							Comprar ahora
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script src="app.js"></script>
+	</body>
+</html>

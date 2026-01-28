@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" role="img" aria-label="MINIMAL · LUJO SILENCIOSO">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d6b26a"/>
+      <stop offset="1" stop-color="#b9852a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Símbolo -->
+  <g>
+    <rect x="18" y="44" width="88" height="14" rx="7" fill="url(#gold)" transform="rotate(-22 18 44)"/>
+    <rect x="46" y="64" width="88" height="14" rx="7" fill="url(#gold)" transform="rotate(-22 46 64)"/>
+  </g>
+
+  <!-- Texto principal -->
+  <text x="140" y="58"
+        fill="#ffffff"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial"
+        font-size="44"
+        font-weight="800"
+        letter-spacing="6">
+    MINIMAL
+  </text>
+
+  <!-- Línea -->
+  <rect x="140" y="72" width="270" height="2" rx="1" fill="rgba(255,255,255,.18)"/>
+
+  <!-- Eslogan -->
+  <text x="140" y="102"
+        fill="rgba(233,233,238,.72)"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial"
+        font-size="16"
+        font-weight="600"
+        letter-spacing="5">
+    LUJO DISCRETO
+  </text>
+</svg>
