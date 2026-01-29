@@ -7,21 +7,18 @@
 		<title>MINIMAL</title>
 		<link rel="stylesheet" href="styles.css">
 
-
 		<!-- SweetAlert2 -->
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 
-
 	<body>
 		<header class="topbar">
-		<div class="brand">
-			<img src="assets/logo-minimal.svg"
-				alt="MINIMAL"
-				class="logo">
-</div>
+			<div class="brand">
+				<!-- Logo (SVG como archivo) -->
+				<img src="assets/logo-minimal.svg"
+					alt="MINIMAL · Lujo silencioso"
+					class="logo">
 			</div>
-
 
 			<div class="actions">
 				<div class="dropdown">
@@ -35,7 +32,6 @@
 					<div class="dropdown-overlay"
 						id="dropdownOverlay"></div>
 				</div>
-
 
 				<button id="btnAbrirCarrito"
 					class="cart-btn"
@@ -55,21 +51,18 @@
 			</div>
 		</header>
 
-
 		<main class="layout">
 			<section class="products">
 				<div class="section-head">
-					<h2>Productos</h2>
+					<h2>Nuestros Productos</h2>
 					<p class="muted">
-						Aqui puedes observar todos los productos de nuestra tienda
+						Piezas de calidad que favorecen el dia a dia. Estética cuidada, materiales de la mejor calidad y una calidad notable.
 					</p>
 				</div>
-
 
 				<div id="gridProductos"
 					class="grid"></div>
 			</section>
-
 
 			<aside class="cart"
 				id="panelCarrito">
@@ -88,11 +81,9 @@
 					</button>
 				</div>
 
-
 				<div class="cart-body">
 					<div id="listaCarrito"
 						class="cart-list"></div>
-
 
 					<div class="coupon">
 						<label for="inputCupon">Cupón</label>
@@ -113,7 +104,6 @@
 							(15%).
 						</p>
 					</div>
-
 
 					<div class="totals">
 						<div class="line">
@@ -137,7 +127,6 @@
 					</div>
 				</div>
 
-
 				<div class="cart-footer">
 					<button id="btnVaciar"
 						class="btn danger">
@@ -151,18 +140,19 @@
 			</aside>
 		</main>
 
-
 		<footer class="footer">
 			<p class="muted">
 				Miguel Angel Alonso Valhondo - MINIMAL - 2026
 			</p>
 		</footer>
 
+		<!-- Overlay carrito (móvil drawer) -->
+		<div class="cart-overlay"
+			id="cartOverlay"></div>
 
 		<!-- QUICK VIEW MODAL -->
 		<div class="qv-overlay"
 			id="qvOverlay"></div>
-
 
 		<div class="qv-modal"
 			id="qvModal"
@@ -173,13 +163,11 @@
 				✕
 			</button>
 
-
 			<div class="qv-media">
 				<img id="qvImg"
 					src
 					alt>
 			</div>
-
 
 			<div class="qv-info">
 				<div class="qv-top">
@@ -191,11 +179,9 @@
 					</p>
 				</div>
 
-
 				<div class="qv-bottom">
 					<div class="qv-price"
 						id="qvPrice"></div>
-
 
 					<div class="qv-actions">
 						<button class="btn secondary"
@@ -211,7 +197,7 @@
 			</div>
 		</div>
 
-
+		<!-- Tip: cambia v=... si el navegador cachea -->
 		<script src="app.js"></script>
 	</body>
 </html>

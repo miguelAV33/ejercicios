@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
 :root {
   --bg: #0b0c0f;
   --text: #e9e9ee;
@@ -17,9 +19,18 @@ body {
 }
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-    Helvetica, Arial;
-  background: radial-gradient(
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  background:
+    radial-gradient(
       1200px 800px at 10% 0%,
       rgba(255, 255, 255, 0.08),
       transparent 50%
@@ -40,6 +51,7 @@ body {
   font-size: 12px;
 }
 
+/* ===== TOPBAR ===== */
 .topbar {
   position: sticky;
   top: 0;
@@ -58,11 +70,12 @@ body {
   align-items: center;
   gap: 10px;
 }
-.logo{
-  height: 60px;
+
+.logo {
+  height: 64px;
   width: auto;
   display: block;
-  filter: drop-shadow(0 0 12px rgba(255,255,255,.15));
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.15));
 }
 
 .actions {
@@ -71,27 +84,7 @@ body {
   gap: 14px;
 }
 
-/* 🔥 select-wrap (por si aún lo tienes en HTML) */
-.select-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--muted);
-}
-select {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--line);
-  color: var(--text);
-  padding: 10px 12px;
-  border-radius: 12px;
-  outline: none;
-}
-select:focus {
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-/* ===== BOTÓN CARRITO ===== */
+/* ===== CART BUTTON ===== */
 .cart-btn {
   display: flex;
   align-items: center;
@@ -102,7 +95,9 @@ select:focus {
   padding: 10px 12px;
   border-radius: 14px;
   cursor: pointer;
-  transition: transform 0.08s ease, background 0.2s ease;
+  transition:
+    transform 0.08s ease,
+    background 0.2s ease;
 }
 .cart-btn:hover {
   background: rgba(255, 255, 255, 0.09);
@@ -129,39 +124,45 @@ select:focus {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.18);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
 }
 .total-top {
   font-size: 13px;
   color: rgba(233, 233, 238, 0.85);
 }
 
-/* ===== LAYOUT ===== */
+/* ===== LAYOUT (PC como antes pero mejor) ===== */
 .layout {
   display: grid;
   grid-template-columns: 1fr 420px;
   gap: 18px;
   padding: 18px 22px 28px;
   align-items: start;
+
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .section-head h2 {
   margin: 0;
-  font-size: 20px;
-  font-weight: 650;
-  letter-spacing: 0.2px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03x;
 }
 .section-head p {
   margin: 6px 0 14px;
+  max-width: 520px;
+  line-height: 1.5;
 }
 
+/* ===== GRID (PC 3 columnas) ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
-/* ===== CARDS PRODUCTOS ===== */
+/* ===== CARD ===== */
 .card {
   background: linear-gradient(
     180deg,
@@ -176,7 +177,11 @@ select:focus {
   flex-direction: column;
   gap: 12px;
   overflow: hidden;
-  transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+  cursor: pointer;
 }
 .card:hover {
   transform: translateY(-2px);
@@ -232,7 +237,7 @@ select:focus {
 
 .price {
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.2px;
 }
 
@@ -243,7 +248,7 @@ select:focus {
   gap: 10px;
 }
 
-/* ===== BOTONES ===== */
+/* ===== BUTTONS ===== */
 .btn {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.06);
@@ -251,8 +256,11 @@ select:focus {
   padding: 10px 12px;
   border-radius: 14px;
   cursor: pointer;
-  transition: transform 0.08s ease, background 0.2s ease, border-color 0.2s ease;
-  font-weight: 600;
+  transition:
+    transform 0.08s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+  font-weight: 700;
 }
 .btn:hover {
   background: rgba(255, 255, 255, 0.09);
@@ -278,7 +286,7 @@ select:focus {
   border-color: rgba(255, 77, 77, 0.35);
 }
 
-/* ===== CARRITO ===== */
+/* ===== CART ===== */
 .cart {
   position: sticky;
   top: 86px;
@@ -365,7 +373,7 @@ select:focus {
 .cart-info-col h4 {
   margin: 0;
   font-size: 13px;
-  font-weight: 650;
+  font-weight: 750;
 }
 .cart-info-col .meta {
   margin-top: 6px;
@@ -376,14 +384,43 @@ select:focus {
   font-size: 12px;
 }
 
-.qty {
+/* Cantidad +/− */
+.qty-controls {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
+  gap: 8px;
+  padding: 6px 8px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.06);
+}
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  transition:
+    transform 0.08s ease,
+    background 0.15s ease;
+}
+.qty-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.qty-btn:active {
+  transform: scale(0.98);
+}
+.qty-number {
+  min-width: 18px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(233, 233, 238, 0.92);
+  font-weight: 800;
 }
 
 .remove {
@@ -398,7 +435,7 @@ select:focus {
   background: rgba(255, 77, 77, 0.16);
 }
 
-/* ===== CUPÓN ===== */
+/* Coupon / totals */
 .coupon label {
   display: block;
   font-size: 12px;
@@ -434,7 +471,7 @@ input:focus {
 }
 .total {
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .cart-footer {
@@ -451,32 +488,6 @@ input:focus {
   padding: 14px 22px 22px;
   border-top: 1px solid var(--line);
   text-align: center;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1100px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-  .cart {
-    position: relative;
-    top: 0;
-    max-height: none;
-  }
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 650px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-  .actions {
-    gap: 10px;
-  }
-  .select-wrap {
-    display: none;
-  }
 }
 
 /* ===== SWEETALERT CUSTOM THEME ===== */
@@ -500,7 +511,7 @@ input:focus {
   background-color: #ffffff !important;
   color: #0b0c0f !important;
   border-radius: 12px !important;
-  font-weight: 700;
+  font-weight: 800;
 }
 .swal2-cancel {
   background-color: #2a2a2a !important;
@@ -508,12 +519,11 @@ input:focus {
   border-radius: 12px !important;
 }
 
-/* ===== DROPDOWN MODERNO (Apple style: overlay + blur + spring) ===== */
+/* ===== DROPDOWN MODERNO ===== */
 .dropdown {
   position: relative;
 }
 
-/* Botón */
 .dropdown-toggle {
   display: flex;
   align-items: center;
@@ -529,25 +539,19 @@ input:focus {
   cursor: pointer;
   font-size: 13px;
 
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.08s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.08s ease;
 }
-
-.dropdown-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .dropdown-toggle:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.22);
 }
-
 .dropdown-toggle:active {
   transform: scale(0.99);
 }
 
-/* Flecha */
 .dropdown-toggle .arrow {
   display: inline-block;
   font-size: 12px;
@@ -555,17 +559,15 @@ input:focus {
   transform: rotate(0deg);
   transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.2, 1);
 }
-
 .dropdown.open .arrow {
   transform: rotate(180deg);
 }
 
-/* Menú */
 .dropdown-menu {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  min-width: 210px;
+  min-width: 230px;
 
   background: rgba(15, 17, 22, 0.92);
   backdrop-filter: blur(14px);
@@ -573,33 +575,26 @@ input:focus {
   border-radius: 16px;
   box-shadow: 0 25px 55px rgba(0, 0, 0, 0.65);
   padding: 6px;
-  z-index: 200;
+  z-index: 220;
 
   opacity: 0;
   transform: translateY(-12px) scale(0.96);
   pointer-events: none;
 
-  transition: opacity 0.18s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.18s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Estado abierto */
 .dropdown-menu.active {
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }
 
-/* ===== DROPDOWN: iconos + divisor ===== */
-.dropdown-divider {
-  height: 1px;
-  margin: 6px 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-}
-
 .dropdown-item {
   display: grid;
-  grid-template-columns: 18px 1fr auto;
+  grid-template-columns: 22px 1fr 18px;
   align-items: center;
   gap: 10px;
 
@@ -608,31 +603,20 @@ input:focus {
   cursor: pointer;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.82);
-  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
-}
-
-.dropdown-item .icon {
-  width: 18px;
-  height: 18px;
-  opacity: 0.85;
-  display: grid;
-  place-items: center;
-}
-
-.dropdown-item .text {
-  white-space: nowrap;
-}
-
-.dropdown-item .check {
-  opacity: 0;
-  transform: translateY(1px);
-  transition: opacity 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
 }
 
 .dropdown-item:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   transform: translateY(-1px);
+}
+
+.dropdown-item .check {
+  opacity: 0;
 }
 
 .dropdown-item.selected {
@@ -645,11 +629,17 @@ input:focus {
   opacity: 1;
 }
 
-/* ===== Overlay con blur (Apple style) ===== */
+.dropdown-divider {
+  height: 1px;
+  margin: 6px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+}
+
 .dropdown-overlay {
   position: fixed;
   inset: 0;
-  z-index: 150;
+  z-index: 200;
 
   background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(10px);
@@ -658,12 +648,12 @@ input:focus {
   pointer-events: none;
   transition: opacity 0.18s ease;
 }
-
 .dropdown-overlay.active {
   opacity: 1;
   pointer-events: auto;
 }
-/* ===== QUICK VIEW (Apple style) ===== */
+
+/* ===== QUICK VIEW MODAL ===== */
 .qv-overlay {
   position: fixed;
   inset: 0;
@@ -674,7 +664,6 @@ input:focus {
   pointer-events: none;
   transition: opacity 0.18s ease;
 }
-
 .qv-overlay.active {
   opacity: 1;
   pointer-events: auto;
@@ -700,7 +689,9 @@ input:focus {
   opacity: 0;
   pointer-events: none;
 
-  transition: opacity 0.18s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.18s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .qv-modal.active {
@@ -728,7 +719,6 @@ input:focus {
   background: #000;
   height: 360px;
 }
-
 .qv-media img {
   width: 100%;
   height: 100%;
@@ -758,21 +748,18 @@ input:focus {
 .qv-top h3 {
   margin: 10px 0 6px;
   font-size: 20px;
-  font-weight: 750;
+  font-weight: 850;
 }
-
 .qv-muted {
   margin: 0;
   color: rgba(233, 233, 238, 0.65);
   font-size: 13px;
 }
-
 .qv-price {
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 950;
   letter-spacing: 0.2px;
 }
-
 .qv-actions {
   display: flex;
   gap: 10px;
@@ -788,42 +775,213 @@ input:focus {
   }
 }
 
-/* ===== CARRITO: + / − moderno ===== */
-.qty-controls {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
+/* ===== Premium PC tweaks ===== */
+@media (min-width: 1101px) {
+  .product-image {
+    height: 200px;
+    border-radius: 16px;
+  }
+  .card {
+    padding: 16px;
+  }
+  .section-head h2 {
+    font-size: 22px;
+  }
+  .section-head p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .cart {
+    top: 92px;
+    max-height: calc(100vh - 120px);
+  }
 }
 
-.qty-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  line-height: 1;
-  transition: transform 0.08s ease, background 0.15s ease;
+/* ===== Tablet ===== */
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin: 0;
+  }
+  .cart {
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.qty-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-.qty-btn:active {
-  transform: scale(0.98);
+/* ===== Mobile ===== */
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dropdown-toggle {
+    min-width: 160px;
+  }
+
+  .cart-btn {
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .layout {
+    padding: 14px 14px 24px;
+    gap: 14px;
+  }
+
+  /* Carrito como drawer móvil */
+  .cart {
+    position: fixed;
+    top: 74px;
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+    z-index: 250;
+
+    transform: translateY(110%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: none;
+  }
+
+  .cart.open {
+    transform: translateY(0);
+  }
+
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 240;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+  }
+
+  .cart-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
-.qty-number {
-  min-width: 18px;
-  text-align: center;
-  font-size: 12px;
-  color: rgba(233, 233, 238, 0.92);
+/* ===== Tipografía moderna ===== */
+
+/* Títulos de sección */
+.section-head h2 {
   font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Texto descriptivo */
+.section-head p,
+.muted {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Títulos de producto */
+.card h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 15px;
+}
+
+/* Precio */
+.price {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 17px;
+}
+
+/* Botones */
+.btn {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Badge categoría */
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+/* Dropdown */
+.dropdown-item {
+  font-weight: 500;
+}
+
+/* Carrito */
+.cart-head h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.cart-info-col h4 {
+  font-weight: 600;
+}
+
+@media (min-width: 1101px) {
+  /* más aire */
+  .grid {
+    gap: 18px;
+  }
+  .card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  /* imagen más editorial */
+  .product-image {
+    height: 220px;
+    border-radius: 18px;
+  }
+
+  /* sombra más elegante */
+  .card {
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+
+  /* tipografía un pelín más premium */
+  .card h3 {
+    font-size: 16px;
+    letter-spacing: 0.2px;
+  }
+  .price {
+    font-size: 17px;
+  }
+
+  /* badge más limpio */
+  .badge {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* ✅ Si NO quieres 4 columnas en pantallas grandes, desactívalo */
+@media (min-width: 1500px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

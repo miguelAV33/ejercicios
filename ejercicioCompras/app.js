@@ -1,6 +1,3 @@
-// ==============================
-// Productos (tus PNG locales)
-// ==============================
 const productos = [
   {
     id: 1,
@@ -60,7 +57,6 @@ const productos = [
   },
 ];
 
-// Imagen fallback (por si alguna falla)
 const FALLBACK_IMG = "assets/products/botellaAgua.png";
 
 // ==============================
@@ -69,10 +65,7 @@ const FALLBACK_IMG = "assets/products/botellaAgua.png";
 let carrito = [];
 let cupon = { codigo: "", porcentaje: 0 };
 
-const CUPONES = {
-  MINIMAL10: 0.1,
-  APPLE15: 0.15,
-};
+const CUPONES = { MINIMAL10: 0.1, APPLE15: 0.15 };
 const ENVIO_GRATIS_DESDE = 150;
 
 // ==============================
@@ -91,14 +84,12 @@ const envioEl = document.getElementById("envio");
 const totalCarritoEl = document.getElementById("totalCarrito");
 const mensajeEnvio = document.getElementById("mensajeEnvio");
 
-// Dropdown
 const dropdownToggle = document.getElementById("dropdownToggle");
 const dropdownMenu = document.getElementById("dropdownMenu");
 const dropdownOverlay = document.getElementById("dropdownOverlay");
 const dropdown = document.querySelector(".dropdown");
-const dropdownLabel = document.querySelector(".dropdown-label");
+const dropdownLabel = document.querySelector("#dropdownToggle .dropdown-label");
 
-// Botones / inputs
 const btnVaciar = document.getElementById("btnVaciar");
 const btnCheckout = document.getElementById("btnCheckout");
 const btnAplicarCupon = document.getElementById("btnAplicarCupon");
@@ -107,6 +98,7 @@ const inputCupon = document.getElementById("inputCupon");
 const btnAbrirCarrito = document.getElementById("btnAbrirCarrito");
 const btnCerrarCarrito = document.getElementById("btnCerrarCarrito");
 const panelCarrito = document.getElementById("panelCarrito");
+const cartOverlay = document.getElementById("cartOverlay");
 
 // Quick View
 const qvOverlay = document.getElementById("qvOverlay");
@@ -211,14 +203,10 @@ function renderProductos(lista) {
       </div>
     `;
 
-    // ✅ Debug + fallback si falla la imagen
     const img = card.querySelector("img");
-    img.addEventListener("error", () => {
-      console.error("❌ No se pudo cargar:", p.imagen);
-      img.src = FALLBACK_IMG;
-    });
+    img.addEventListener("error", () => (img.src = FALLBACK_IMG));
 
-    // ✅ Click en tarjeta => Quick View (excepto botón)
+    // Click en card => Quick View (excepto botón)
     card.addEventListener("click", (e) => {
       if (e.target.closest("button")) return;
       abrirQuickView(p);
@@ -227,9 +215,9 @@ function renderProductos(lista) {
     gridProductos.appendChild(card);
   });
 
-  // Botón añadir
   gridProductos.querySelectorAll("button[data-id]").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
       const id = Number(btn.dataset.id);
       añadirAlCarrito(id);
     });
@@ -237,7 +225,7 @@ function renderProductos(lista) {
 }
 
 // ==============================
-// Render Carrito con miniaturas + controles +/−
+// Render Carrito
 // ==============================
 function renderCarrito() {
   listaCarrito.innerHTML = "";
@@ -278,21 +266,17 @@ function renderCarrito() {
         <button class="remove" data-id="${item.id}">Eliminar</button>
       `;
 
-      // fallback miniatura
       const img = row.querySelector(".cart-thumb img");
-      img.addEventListener("error", () => {
-        img.src = FALLBACK_IMG;
-      });
+      img.addEventListener("error", () => (img.src = FALLBACK_IMG));
 
       listaCarrito.appendChild(row);
     });
 
     // Eliminar
     listaCarrito.querySelectorAll(".remove").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = Number(btn.dataset.id);
-        eliminarDelCarrito(id);
-      });
+      btn.addEventListener("click", () =>
+        eliminarDelCarrito(Number(btn.dataset.id)),
+      );
     });
 
     // +/−
@@ -334,7 +318,7 @@ function renderCarrito() {
 }
 
 // ==============================
-// Dropdown categorías (divisor + iconos + check)
+// Dropdown categorías 
 // ==============================
 function iconForCategory(cat) {
   const map = {
@@ -358,18 +342,26 @@ function buildDropdownItem(cat, selected) {
     <span class="check">✓</span>
   `;
 
-  item.addEventListener("click", () => {
-    dropdownLabel.textContent = cat;
+  // ✅ clave: evitar que el click “suba” y lo cierre antes
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-    dropdownMenu.querySelectorAll(".dropdown-item").forEach((i) => {
-      i.classList.remove("selected");
-    });
+    // Cambiar label
+    if (dropdownLabel) dropdownLabel.textContent = cat;
+
+    // Selected
+    dropdownMenu
+      .querySelectorAll(".dropdown-item")
+      .forEach((i) => i.classList.remove("selected"));
     item.classList.add("selected");
 
-    closeDropdown();
-
+    // Filtrar
     if (cat === "Todas") renderProductos(productos);
     else renderProductos(productos.filter((p) => p.categoria === cat));
+
+    // Cerrar (después de filtrar)
+    closeDropdown();
   });
 
   return item;
@@ -377,7 +369,6 @@ function buildDropdownItem(cat, selected) {
 
 function renderFiltroCategorias() {
   const categorias = ["Todas", ...new Set(productos.map((p) => p.categoria))];
-
   dropdownMenu.innerHTML = "";
 
   dropdownMenu.appendChild(buildDropdownItem(categorias[0], true));
@@ -386,9 +377,9 @@ function renderFiltroCategorias() {
   divider.className = "dropdown-divider";
   dropdownMenu.appendChild(divider);
 
-  categorias.slice(1).forEach((cat) => {
-    dropdownMenu.appendChild(buildDropdownItem(cat, false));
-  });
+  categorias
+    .slice(1)
+    .forEach((cat) => dropdownMenu.appendChild(buildDropdownItem(cat, false)));
 }
 
 function openDropdown() {
@@ -402,9 +393,7 @@ function closeDropdown() {
   dropdownOverlay.classList.remove("active");
 }
 function toggleDropdown() {
-  const isOpen = dropdownMenu.classList.contains("active");
-  if (isOpen) closeDropdown();
-  else openDropdown();
+  dropdownMenu.classList.contains("active") ? closeDropdown() : openDropdown();
 }
 
 // ==============================
@@ -469,10 +458,8 @@ async function eliminarDelCarrito(idProducto) {
     showCancelButton: true,
     confirmButtonText: "Sí, eliminar",
     cancelButtonText: "Cancelar",
-    confirmButtonColor: "#ffffff",
-    cancelButtonColor: "#333",
-    color: "#e9e9ee",
     background: "#11131a",
+    color: "#e9e9ee",
   });
 
   if (res.isConfirmed) {
@@ -499,10 +486,8 @@ async function vaciarCarrito() {
     showCancelButton: true,
     confirmButtonText: "Sí, vaciar",
     cancelButtonText: "Cancelar",
-    confirmButtonColor: "#ffffff",
-    cancelButtonColor: "#333",
-    color: "#e9e9ee",
     background: "#11131a",
+    color: "#e9e9ee",
   });
 
   if (res.isConfirmed) {
@@ -535,13 +520,26 @@ function aplicarCupon() {
   renderCarrito();
 }
 
+// ✅ Responsive carrito: móvil drawer / escritorio scroll
 function abrirCarrito() {
+  if (window.matchMedia("(max-width: 720px)").matches) {
+    panelCarrito.classList.add("open");
+    cartOverlay.classList.add("active");
+    return;
+  }
   panelCarrito.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
 function cerrarCarrito() {
+  if (window.matchMedia("(max-width: 720px)").matches) {
+    panelCarrito.classList.remove("open");
+    cartOverlay.classList.remove("active");
+    return;
+  }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+// ✅ Checkout: confirma y vacía carrito
 async function checkout() {
   const total = calcularTotal();
 
@@ -561,19 +559,15 @@ async function checkout() {
     showCancelButton: true,
     confirmButtonText: "Confirmar",
     cancelButtonText: "Cancelar",
-    confirmButtonColor: "#ffffff",
-    cancelButtonColor: "#333",
     background: "#11131a",
     color: "#e9e9ee",
   });
 
   if (!res.isConfirmed) return;
 
-  // ✅ “Compra realizada”: vaciar carrito + reset cupón
   carrito = [];
   cupon = { codigo: "", porcentaje: 0 };
   inputCupon.value = "";
-
   renderCarrito();
 
   Swal.fire({
@@ -586,10 +580,8 @@ async function checkout() {
     color: "#e9e9ee",
   });
 
-  // opcional: subir arriba
-  // window.scrollTo({ top: 0, behavior: "smooth" });
+  if (window.matchMedia("(max-width: 720px)").matches) cerrarCarrito();
 }
-
 
 // ==============================
 // Init
@@ -606,43 +598,53 @@ function init() {
 
   btnAbrirCarrito.addEventListener("click", abrirCarrito);
   btnCerrarCarrito.addEventListener("click", cerrarCarrito);
+  cartOverlay.addEventListener("click", cerrarCarrito);
 
-  // Dropdown
+  // ✅ Toggle dropdown (blindado)
   dropdownToggle.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     toggleDropdown();
   });
 
-  dropdownOverlay.addEventListener("click", closeDropdown);
+  // ✅ Overlay cierra dropdown
+  dropdownOverlay.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    closeDropdown();
+  });
 
+  // ✅ Click fuera cierra dropdown
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".dropdown")) closeDropdown();
   });
 
-  // Quick View: cerrar
+  // Quick View close + actions
   qvOverlay.addEventListener("click", cerrarQuickView);
   qvClose.addEventListener("click", cerrarQuickView);
 
-  // Escape: cierra ambos (dropdown y quick view)
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeDropdown();
-      cerrarQuickView();
-    }
-  });
-
-  // Quick View: acciones
-  qvAdd.addEventListener("click", () => {
+  qvAdd.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!qvProductoActual) return;
     añadirAlCarrito(qvProductoActual.id);
   });
 
-  qvBuy.addEventListener("click", () => {
+  qvBuy.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!qvProductoActual) return;
     añadirAlCarrito(qvProductoActual.id);
     cerrarQuickView();
     abrirCarrito();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeDropdown();
+      cerrarQuickView();
+      if (window.matchMedia("(max-width: 720px)").matches) cerrarCarrito();
+    }
   });
 }
 
