@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0">
+		<title>
+			Formulario de dinamismo
+		</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+
+
+	<body>
+		<div class="wrap">
+			<h1>
+				Formulario de dinamismo
+			</h1>
+
+
+			<div class="top-grid">
+				<!-- IZQUIERDA -->
+				<section>
+					<h2>Introducción datos</h2>
+
+
+					<form id="taskForm"
+						class="form">
+						<div class="field">
+							<label for="titulo">Título</label>
+							<input id="titulo"
+								type="text"
+								placeholder="Alta1"
+								required>
+						</div>
+
+
+						<div class="field">
+							<label for="descripcion">Descripción</label>
+							<textarea id="descripcion"
+								placeholder="Descripción de la tarea..."></textarea>
+						</div>
+
+
+						<div class="field">
+							<label for="prioridad">Prioridad</label>
+							<select id="prioridad"
+								required>
+								<option value="Alta">Alta</option>
+								<option value="Media">Media</option>
+								<option value="Baja">Baja</option>
+							</select>
+						</div>
+
+
+						<div class="field">
+							<label for="fecha">Fecha</label>
+							<input id="fecha"
+								type="date"
+								required>
+						</div>
+
+
+						<div class="checkline">
+							<input id="prioritaria"
+								type="checkbox">
+							<label for="prioritaria">Prioritaria</label>
+						</div>
+
+
+						<button class="btn"
+							type="submit">
+							Agregar
+						</button>
+					</form>
+				</section>
+
+
+				<!-- DERECHA -->
+				<section>
+					<h2>
+						Resultados de búsqueda
+					</h2>
+
+
+					<div class="filter-box">
+						<div class="filter-row">
+							<select id="filterSelect">
+								<option value="Todas">Todas</option>
+								<option value="Baja">Baja</option>
+								<option value="Media">Media</option>
+								<option value="Alta">Alta</option>
+							</select>
+						</div>
+
+
+						<ul id="filteredList"
+							class="task-list"></ul>
+					</div>
+				</section>
+			</div>
+
+
+			<div class="cards-title">Tareas</div>
+			<section id="cards"
+				class="cards"></section>
+		</div>
+
+
+		<script src="app.js"></script>
+	</body>
+</html>
