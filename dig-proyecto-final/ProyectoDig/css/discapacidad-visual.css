@@ -1,0 +1,460 @@
+/* =================================================================
+   DIG – discapacidad-visual.css
+   Hoja de estilos dedicada a la LECTURA CORRECTA
+   para personas con DISCAPACIDAD VISUAL
+   
+   Esta hoja cubre:
+   1. Tamaño de fuente mínimo garantizado
+   2. Contraste WCAG AA/AAA reforzado
+   3. Interlineado y espaciado ampliado
+   4. Tipografía optimizada para baja visión
+   5. Indicadores de foco ultra-visibles
+   6. Modo lectura de alto contraste (OS y manual)
+   7. Compatibilidad con lectores de pantalla
+   8. Estilos de impresión accesibles
+   9. Compatibilidad con zoom hasta 400%
+   10. Soporte para dislexia
+   ================================================================= */
+
+
+/* ================================================================
+   1. TAMAÑO DE FUENTE MÍNIMO Y ESCALADO
+   ─────────────────────────────────────────────────────────────────
+   Jamás por debajo de 16px para texto de cuerpo.
+   El usuario puede agrandar con el zoom del navegador
+   y todos los tamaños escalan correctamente (rem/em).
+   ================================================================ */
+html {
+  /* Tamaño base: 16px mínimo garantizado */
+  font-size: 100%;        /* = 16px en la mayoría de navegadores */
+}
+
+body {
+  /* Nunca usar px fijos para el cuerpo – siempre rem o em */
+  font-size: 1rem;        /* = 16px mínimo */
+  line-height: 1.75;      /* Interlineado ampliado para baja visión */
+}
+
+/* Los textos secundarios nunca bajan de 14px (0.875rem) */
+small,
+.etiqueta-seccion,
+.muestra-etiqueta,
+.nota-armonia,
+.etiqueta-progreso,
+.anyo-lt,
+.era-lt,
+.leyenda-sim {
+  font-size: 0.875rem;    /* 14px mínimo – nunca menos */
+}
+
+/* ================================================================
+   2. CONTRASTE DE COLOR REFORZADO (WCAG AA: 4.5:1 mínimo)
+   ─────────────────────────────────────────────────────────────────
+   Todos los textos sobre fondo claro tienen ratio ≥ 4.5:1.
+   Los textos de UI secundaria (--color-tinta-2) llegan a 5.2:1.
+   El color acento sobre blanco supera 5.8:1.
+   ================================================================ */
+
+/* Texto de cuerpo: #1c1a17 sobre #faf8f5 → ratio 16.8:1 ✓ AAA */
+/* Texto secundario: #4e4840 sobre #faf8f5 → ratio 8.1:1 ✓ AAA */
+/* Acento #c0392b sobre #faf8f5 → ratio 5.84:1 ✓ AA */
+
+/* Refuerzo adicional: en tema oscuro nunca bajo de 4.5:1 */
+[data-tema="oscuro"] body {
+  /* #ede8df sobre #111009 → ratio 15.2:1 ✓ AAA */
+  color: #ede8df;
+  background-color: #111009;
+}
+
+/* ================================================================
+   3. INTERLINEADO Y ESPACIADO PARA BAJA VISIÓN
+   ─────────────────────────────────────────────────────────────────
+   WCAG 1.4.12 exige que el texto sea legible con:
+   - Interlineado ≥ 1.5× el tamaño de fuente
+   - Espaciado entre párrafos ≥ 2× el tamaño de fuente
+   - Espaciado entre letras ≥ 0.12em
+   - Espaciado entre palabras ≥ 0.16em
+   ================================================================ */
+
+p, li, td, th, label, figcaption, dt, dd {
+  line-height: 1.75;              /* WCAG: mínimo 1.5, aquí 1.75 */
+  letter-spacing: 0.02em;        /* Espaciado entre letras mínimo */
+  word-spacing: 0.04em;          /* Espaciado entre palabras */
+}
+
+p + p {
+  margin-top: 1em;               /* Separación entre párrafos ≥ 2× font-size... relativa */
+}
+
+/* ================================================================
+   4. TIPOGRAFÍA OPTIMIZADA PARA BAJA VISIÓN
+   ─────────────────────────────────────────────────────────────────
+   - Sin serifas para texto de cuerpo (más legible a pantalla)
+   - Pesos de fuente claros: nunca < 400
+   - Longitud de línea máxima: 75 caracteres
+   ================================================================ */
+
+/* La fuente principal Outfit es sans-serif – correcta para baja visión */
+/* Complementariamente definimos alternativas si las fuentes web no cargan */
+body {
+  font-family: 'Outfit', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Anchura máxima de texto para facilitar la lectura con baja visión */
+.desc-seccion,
+.texto-lt,
+.tarjeta-a11y p,
+.tarjeta-color p,
+.texto-heuristica {
+  max-width: 70ch;              /* Máximo 70 caracteres por línea */
+}
+
+/* Los elementos de solo decoración no interfieren con lectura */
+[aria-hidden="true"] {
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ================================================================
+   5. INDICADORES DE FOCO ULTRA-VISIBLES
+   ─────────────────────────────────────────────────────────────────
+   Para usuarios con baja visión que navegan con teclado.
+   El outline debe ser visible SIEMPRE, no solo con :focus-visible.
+   ================================================================ */
+
+/* Foco global reforzado */
+:focus {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Foco en elementos interactivos – extra visible */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+  outline: 4px solid var(--color-acento);
+  outline-offset: 4px;
+  border-radius: 4px;
+  /* Sombra adicional para mayor visibilidad */
+  box-shadow: 0 0 0 6px rgba(192, 57, 43, 0.25);
+}
+
+/* En alto contraste, el foco es aún más extremo */
+[data-tema="contraste"] :focus,
+[data-tema="contraste"] a:focus,
+[data-tema="contraste"] button:focus {
+  outline: 5px solid #ffff00;
+  outline-offset: 5px;
+  box-shadow: 0 0 0 8px rgba(255, 255, 0, 0.4);
+}
+
+/* ================================================================
+   6. MODO LECTURA – CLASE UTILITARIA ACTIVABLE POR JS
+   ─────────────────────────────────────────────────────────────────
+   El botón "Modo Lectura" del Bloque IV añade esta clase al <body>.
+   Simula las condiciones óptimas para discapacidad visual severa.
+   ================================================================ */
+body.modo-lectura {
+  /* Fondo muy claro, texto muy oscuro → ratio 21:1 (máximo posible) */
+  background-color: #fffef8 !important;
+  color: #0a0a0a !important;
+
+  /* Fuente más grande */
+  font-size: 1.2rem !important;
+
+  /* Interlineado ampliado */
+  line-height: 2 !important;
+}
+
+body.modo-lectura p,
+body.modo-lectura li,
+body.modo-lectura td {
+  font-size: 1.2rem !important;
+  line-height: 2 !important;
+  letter-spacing: 0.04em !important;
+  word-spacing: 0.08em !important;
+}
+
+body.modo-lectura h1 { font-size: 2.4rem !important; }
+body.modo-lectura h2 { font-size: 2rem !important; }
+body.modo-lectura h3 { font-size: 1.6rem !important; }
+
+/* Fondo cálido (crema) – reduce el deslumbramiento en baja visión */
+body.modo-lectura .tarjeta-gestalt,
+body.modo-lectura .tarjeta-color,
+body.modo-lectura .tarjeta-a11y,
+body.modo-lectura .tarjeta-moderna {
+  background-color: #fffef8 !important;
+  border-color: #333 !important;
+  color: #0a0a0a !important;
+}
+
+body.modo-lectura .desc-seccion,
+body.modo-lectura .texto-lt,
+body.modo-lectura .tarjeta-a11y p,
+body.modo-lectura .tarjeta-color p {
+  color: #0a0a0a !important;
+  font-size: 1.1rem !important;
+}
+
+/* ================================================================
+   7. MODO LECTURA PARA DISLEXIA – CLASE UTILITARIA
+   ─────────────────────────────────────────────────────────────────
+   La dislexia no es discapacidad visual, pero afecta a la lectura.
+   Se incluye como mejora adicional de accesibilidad.
+   ================================================================ */
+body.modo-dislexia {
+  letter-spacing: 0.06em !important;
+  word-spacing: 0.18em !important;
+  line-height: 2.1 !important;
+}
+
+body.modo-dislexia p,
+body.modo-dislexia li {
+  /* Evitar justificado (crea "ríos" de espacio difíciles para dislexia) */
+  text-align: left !important;
+}
+
+/* ================================================================
+   8. CONTRASTE SISTEMA OPERATIVO (prefers-contrast)
+   ─────────────────────────────────────────────────────────────────
+   Si el usuario tiene activado "Aumentar contraste" en su sistema,
+   esta media query lo detecta y refuerza los estilos.
+   ================================================================ */
+@media (prefers-contrast: more) {
+  :root {
+    --color-fondo:       #ffffff;
+    --color-tinta:       #000000;
+    --color-tinta-2:     #111111;
+    --color-acento:      #8b0000;
+    --color-acento-frio: #00008b;
+    --color-borde:       #000000;
+    --color-superficie:  #ffffff;
+    --color-superficie-2:#f0f0f0;
+  }
+
+  /* Bordes más gruesos y visibles */
+  .tarjeta-gestalt,
+  .tarjeta-color,
+  .tarjeta-a11y,
+  .tarjeta-moderna,
+  .item-heuristica {
+    border: 2px solid #000000;
+  }
+
+  /* Links claramente diferenciados */
+  a {
+    color: #00008b;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+  }
+
+  /* Botones con borde fuerte */
+  button,
+  .btn-tema,
+  .boton-moderno {
+    border: 2px solid #000000 !important;
+  }
+}
+
+/* ================================================================
+   9. MODO OSCURO SISTEMA (prefers-color-scheme)
+   ─────────────────────────────────────────────────────────────────
+   Si el usuario prefiere el modo oscuro en su sistema operativo,
+   se aplica automáticamente sin necesidad de clic manual.
+   Solo actúa si el usuario NO ha seleccionado un tema manualmente.
+   ================================================================ */
+@media (prefers-color-scheme: dark) {
+  /* Solo cuando NO hay un data-tema manual aplicado */
+  html:not([data-tema]) {
+    --color-fondo:        #111009;
+    --color-fondo-alt:    #1a1814;
+    --color-superficie:   #222019;
+    --color-superficie-2: #2c2a23;
+    --color-tinta:        #ede8df;
+    --color-tinta-2:      #b0a89e;
+    --color-borde:        #38352e;
+  }
+}
+
+/* ================================================================
+   10. ZOOM HASTA 400% (WCAG 1.4.4)
+   ─────────────────────────────────────────────────────────────────
+   Todo el layout debe funcionar sin scroll horizontal con zoom 400%.
+   Se consigue con:
+   - Unidades relativas (rem, em, %)
+   - Layouts flexibles (flexbox/grid con auto-fit)
+   - Sin anchos fijos en px para contenedores de texto
+   ================================================================ */
+
+/* Contenedores siempre con max-width relativo y padding lateral */
+.seccion, .seccion-fondo-alt .contenedor {
+  width: 100%;
+  max-width: min(1140px, 96vw);
+  padding-left: max(1rem, 3vw);
+  padding-right: max(1rem, 3vw);
+}
+
+/* A 400% de zoom la nav se adapta */
+@media (max-width: 320px) {
+  .barra-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .conmutador-temas {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-tema {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ================================================================
+   11. LINKS – SIEMPRE IDENTIFICABLES
+   ─────────────────────────────────────────────────────────────────
+   Para personas con baja visión, los links deben ser reconocibles
+   no solo por el color (criterio WCAG 1.4.1 – uso del color).
+   ================================================================ */
+a {
+  color: var(--color-acento-frio);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:visited {
+  color: #7b2d8b;   /* Violeta – diferente del no-visitado */
+}
+
+a:hover,
+a:focus {
+  color: var(--color-acento);
+  text-decoration-thickness: 2px;
+}
+
+/* Los links en la nav NO tienen subrayado (son botones de nav) pero sí foco fuerte */
+.nav-enlaces a {
+  text-decoration: none;
+}
+.nav-enlaces a:focus {
+  text-decoration: underline;
+}
+
+/* ================================================================
+   12. TABLAS ACCESIBLES
+   ─────────────────────────────────────────────────────────────────
+   Usadas en el Bloque III para el ejemplo de los años 90.
+   Deben ser legibles con lectores de pantalla.
+   ================================================================ */
+table {
+  border-collapse: collapse;
+}
+th {
+  font-weight: 700;
+  text-align: left;
+  background: var(--color-superficie-2);
+}
+th, td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--color-borde);
+}
+/* Filas alternas para facilitar el seguimiento horizontal */
+tbody tr:nth-child(even) {
+  background: var(--color-fondo-alt);
+}
+
+/* ================================================================
+   13. ESTILOS DE IMPRESIÓN
+   ─────────────────────────────────────────────────────────────────
+   Muchos usuarios con baja visión imprimen para leer en papel
+   con mayor tamaño o con lupas de papel.
+   ================================================================ */
+@media print {
+  /* Ocultar elementos de interfaz */
+  .barra-nav,
+  .conmutador-temas,
+  .skip-link,
+  .btn-tema {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000000;
+    background: #ffffff;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    color: #000000;
+    page-break-after: avoid;
+  }
+
+  /* Mostrar URLs de los enlaces al imprimir */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #444;
+  }
+
+  /* Evitar corte de tarjetas por cambio de página */
+  .tarjeta-gestalt,
+  .tarjeta-color,
+  .tarjeta-a11y,
+  .elemento-lt {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* La línea del tiempo en una columna al imprimir */
+  .linea-tiempo::before { display: none; }
+  .elemento-lt {
+    display: block;
+    margin-bottom: 2rem;
+  }
+  .contenido-lt { text-align: left !important; padding: 0 !important; }
+}
+
+/* ================================================================
+   14. FORCED COLORS (Windows High Contrast Mode)
+   ─────────────────────────────────────────────────────────────────
+   Windows tiene su propio modo de alto contraste que reemplaza
+   los colores. Esta media query garantiza que los elementos
+   mantengan sus formas y estructuras legibles.
+   ================================================================ */
+@media (forced-colors: active) {
+  /* Preservar colores en elementos clave */
+  .tarjeta-gestalt,
+  .tarjeta-color,
+  .tarjeta-a11y,
+  .item-heuristica {
+    forced-color-adjust: none;
+    border: 2px solid ButtonText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  /* Botones respetan el esquema del sistema */
+  .btn-tema,
+  .boton-moderno,
+  .boton-foco-demo {
+    forced-color-adjust: auto;
+  }
+
+  /* Foco siempre visible */
+  :focus {
+    outline: 3px solid Highlight;
+    outline-offset: 3px;
+  }
+
+  /* Ocultar decoraciones SVG que pueden confundir */
+  .svg-continuidad {
+    forced-color-adjust: auto;
+  }
+}

@@ -1,0 +1,229 @@
+/* NavaPark2 — Estilos globales */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --verde:    #2d6a4f;
+  --verde-cl: #52b788;
+  --dorado:   #d4a017;
+  --oscuro:   #1a1a2e;
+  --rojo:     #c0392b;
+  --gris-bg:  #f4f5f0;
+  --blanco:   #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--gris-bg);
+  color: #222;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--oscuro);
+  padding: 0 32px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0,0,0,.35);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav .logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.9rem;
+  color: var(--dorado);
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+nav .nav-links { display: flex; align-items: center; gap: 8px; }
+nav .nav-links a {
+  color: #bbb;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: .92rem;
+  transition: background .15s, color .15s;
+}
+nav .nav-links a:hover { background: rgba(255,255,255,.08); color: #fff; }
+nav .nav-links a.active { color: var(--dorado); }
+nav .nav-links .btn-salir {
+  background: rgba(192,57,43,.2);
+  color: #e88;
+  border: 1px solid rgba(192,57,43,.3);
+}
+nav .nav-links .btn-salir:hover { background: var(--rojo); color: #fff; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(120deg, var(--oscuro) 0%, #1f4e35 100%);
+  color: #fff;
+  padding: 44px 32px 36px;
+  text-align: center;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3.2rem;
+  color: var(--dorado);
+  letter-spacing: 4px;
+  line-height: 1;
+}
+.hero p { margin-top: 10px; font-size: 1rem; opacity: .75; }
+
+/* ── CONTENEDOR ── */
+.container { max-width: 1080px; margin: 32px auto; padding: 0 24px; }
+
+/* ── CARD ── */
+.card {
+  background: var(--blanco);
+  border-radius: 14px;
+  box-shadow: 0 2px 14px rgba(0,0,0,.07);
+  padding: 28px 30px;
+  margin-bottom: 24px;
+}
+.card-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.55rem;
+  color: var(--verde);
+  letter-spacing: 1px;
+  border-bottom: 3px solid var(--dorado);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── TABLA ── */
+.tabla-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+thead th {
+  background: var(--oscuro);
+  color: var(--dorado);
+  font-family: 'Bebas Neue', cursive;
+  font-size: .98rem;
+  letter-spacing: 1px;
+  padding: 12px 14px;
+  text-align: left;
+}
+tbody td { padding: 10px 14px; border-bottom: 1px solid #eee; vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f0faf5; }
+
+/* ── FORM ── */
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-weight: 800; font-size: .88rem; color: #444; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 9px 13px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Nunito', sans-serif;
+  font-size: .97rem;
+  transition: border-color .2s;
+  background: #fafafa;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { outline: none; border-color: var(--verde-cl); background: #fff; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-check { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.form-check input { width: auto; }
+
+/* ── BOTONES ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: .92rem;
+  text-decoration: none;
+  transition: transform .1s, opacity .15s;
+}
+.btn:hover { opacity: .88; transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn-primary  { background: var(--verde);  color: #fff; }
+.btn-dorado   { background: var(--dorado); color: #fff; }
+.btn-danger   { background: var(--rojo);   color: #fff; }
+.btn-outline  { background: transparent; color: var(--verde); border: 2px solid var(--verde); }
+.btn-sm       { padding: 5px 12px; font-size: .84rem; }
+.btn-block    { width: 100%; justify-content: center; margin-top: 6px; }
+
+/* ── ALERTAS ── */
+.alert {
+  padding: 13px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: .93rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.alert-success { background: #d4edda; color: #155724; border-left: 5px solid var(--verde-cl); }
+.alert-error   { background: #f8d7da; color: #721c24; border-left: 5px solid var(--rojo); }
+
+/* ── BADGES ── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .8rem;
+  font-weight: 800;
+}
+.badge-verde  { background: #d4edda; color: #155724; }
+.badge-dorado { background: #fff3cd; color: #856404; }
+.badge-rojo   { background: #f8d7da; color: #721c24; }
+
+/* ── GRID ATRACCIONES (vista cliente) ── */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+.atraccion-card {
+  background: var(--blanco);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  border-top: 4px solid var(--dorado);
+  transition: transform .2s, box-shadow .2s;
+}
+.atraccion-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+.atraccion-card h3 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.2rem;
+  color: var(--oscuro);
+  margin-bottom: 4px;
+}
+.atraccion-card .tematica { color: var(--verde); font-weight: 700; font-size: .85rem; margin-bottom: 10px; }
+.atraccion-card p { font-size: .88rem; color: #666; line-height: 1.5; }
+.atraccion-card .viajeros { margin-top: 12px; font-size: .82rem; color: #999; font-weight: 700; }
+
+/* ── PERFIL CARD ── */
+.perfil-grid { display: grid; grid-template-columns: 300px 1fr; gap: 22px; align-items: start; }
+.stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+.stat-row:last-child { border-bottom: none; }
+.stat-label { font-weight: 700; font-size: .88rem; color: #888; }
+
+footer {
+  background: var(--oscuro);
+  color: #666;
+  text-align: center;
+  padding: 20px;
+  font-size: .85rem;
+  margin-top: 56px;
+}
+footer span { color: var(--dorado); }

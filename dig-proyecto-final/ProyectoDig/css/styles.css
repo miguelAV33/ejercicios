@@ -1,0 +1,1218 @@
+/* =================================================================
+   DIG – Percepción y Evolución en la Interfaz Web
+   styles.css  |  Hoja de estilos principal
+   ================================================================= */
+
+/* ── IMPORTAR FUENTES ─────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+/* =================================================================
+   VARIABLES DE DISEÑO – TEMA CLARO (por defecto)
+   ================================================================= */
+:root {
+  /* Paleta Análoga: rojos → naranjas (calor) + azul (frío) como contrapunto */
+  --color-fondo:        #faf8f5;
+  --color-fondo-alt:    #f0ece4;
+  --color-superficie:   #ffffff;
+  --color-superficie-2: #f5f2ec;
+  --color-tinta:        #1c1a17;
+  --color-tinta-2:      #4e4840;
+  --color-tinta-3:      #9c9288;
+  --color-acento:       #c0392b;       /* Rojo – color primario de marca */
+  --color-acento-2:     #e67e22;       /* Naranja – análogo */
+  --color-acento-frio:  #1a5276;       /* Azul oscuro – contrapunto */
+  --color-borde:        #ddd8d0;
+  --sombra-suave:       0 2px 16px rgba(28,26,23,0.09);
+  --sombra-media:       0 6px 32px rgba(28,26,23,0.14);
+  --sombra-fuerte:      0 12px 48px rgba(28,26,23,0.22);
+
+  /* Tipografía */
+  --fuente-titulo:      'Playfair Display', Georgia, serif;
+  --fuente-ui:          'Outfit', system-ui, sans-serif;
+  --fuente-codigo:      'Fira Code', monospace;
+
+  /* Espaciado y radios */
+  --radio:              10px;
+  --radio-lg:           18px;
+  --transicion:         0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* =================================================================
+   TEMA OSCURO
+   ================================================================= */
+[data-tema="oscuro"] {
+  --color-fondo:        #111009;
+  --color-fondo-alt:    #1a1814;
+  --color-superficie:   #222019;
+  --color-superficie-2: #2c2a23;
+  --color-tinta:        #ede8df;
+  --color-tinta-2:      #b0a89e;
+  --color-tinta-3:      #6a6358;
+  --color-acento:       #e05c4a;
+  --color-acento-2:     #f0932b;
+  --color-acento-frio:  #5ba4d5;
+  --color-borde:        #38352e;
+  --sombra-suave:       0 2px 16px rgba(0,0,0,0.4);
+  --sombra-media:       0 6px 32px rgba(0,0,0,0.5);
+  --sombra-fuerte:      0 12px 48px rgba(0,0,0,0.65);
+}
+
+/* =================================================================
+   TEMA ALTO CONTRASTE
+   ================================================================= */
+[data-tema="contraste"] {
+  --color-fondo:        #000000;
+  --color-fondo-alt:    #0d0d0d;
+  --color-superficie:   #111111;
+  --color-superficie-2: #1a1a1a;
+  --color-tinta:        #ffffff;
+  --color-tinta-2:      #f0f0f0;
+  --color-tinta-3:      #cccccc;
+  --color-acento:       #ffff00;
+  --color-acento-2:     #00ffff;
+  --color-acento-frio:  #00ff88;
+  --color-borde:        #ffffff;
+  --sombra-suave:       0 0 0 2px #ffff00;
+  --sombra-media:       0 0 0 3px #ffff00;
+  --sombra-fuerte:      0 0 0 4px #ffff00;
+}
+
+/* =================================================================
+   RESET Y BASE
+   ================================================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-tinta);
+  font-family: var(--fuente-ui);
+  line-height: 1.7;
+  transition:
+    background-color var(--transicion),
+    color var(--transicion);
+  overflow-x: hidden;
+}
+
+/* =================================================================
+   SKIP LINK – Accesibilidad de teclado
+   ================================================================= */
+.skip-link {
+  position: absolute;
+  top: -200px;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--color-acento);
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radio);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: top 0.25s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* =================================================================
+   BARRA DE NAVEGACIÓN
+   ================================================================= */
+.barra-nav {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--color-fondo);
+  border-bottom: 1px solid var(--color-borde);
+  padding: 0.85rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  transition: background-color var(--transicion), border-color var(--transicion);
+}
+
+.nav-logo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.4rem;
+  color: var(--color-acento);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.nav-enlaces {
+  display: flex;
+  gap: 0.2rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-enlaces a {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-tinta-2);
+  text-decoration: none;
+  border-radius: 999px;
+  transition: all var(--transicion);
+}
+.nav-enlaces a:hover,
+.nav-enlaces a:focus {
+  color: var(--color-tinta);
+  background: var(--color-superficie-2);
+}
+
+/* =================================================================
+   CONMUTADOR DE TEMAS (Bloque II – requerido)
+   ================================================================= */
+.conmutador-temas {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-tema {
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-borde);
+  background: var(--color-superficie);
+  color: var(--color-tinta-2);
+  cursor: pointer;
+  transition: all var(--transicion);
+  white-space: nowrap;
+}
+.btn-tema:hover,
+.btn-tema:focus {
+  border-color: var(--color-acento);
+  color: var(--color-acento);
+  outline: 2px solid var(--color-acento);
+  outline-offset: 2px;
+}
+.btn-tema[aria-pressed="true"] {
+  background: var(--color-acento);
+  border-color: var(--color-acento);
+  color: #fff;
+}
+[data-tema="contraste"] .btn-tema[aria-pressed="true"] {
+  color: #000;
+}
+
+/* =================================================================
+   LAYOUT DE SECCIONES
+   ================================================================= */
+.seccion {
+  padding: 5.5rem 2rem;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.seccion-fondo-alt {
+  background: var(--color-fondo-alt);
+  max-width: 100%;
+  padding: 5.5rem 2rem;
+  transition: background-color var(--transicion);
+}
+.seccion-fondo-alt .contenedor {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.etiqueta-seccion {
+  display: inline-block;
+  font-family: var(--fuente-codigo);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-acento);
+  margin-bottom: 0.6rem;
+}
+
+.titulo-seccion {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  color: var(--color-tinta);
+  margin-bottom: 1rem;
+}
+
+.desc-seccion {
+  font-size: 1.05rem;
+  color: var(--color-tinta-2);
+  max-width: 64ch;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.divisor {
+  width: 100%;
+  height: 1px;
+  background: var(--color-borde);
+  border: none;
+  margin: 0;
+}
+
+/* =================================================================
+   ╔══════════════════════════════════════════════╗
+   ║  BLOQUE I – GESTALT Y PERCEPCIÓN             ║
+   ╚══════════════════════════════════════════════╝
+   Reglas: solo HTML+CSS, sin imágenes externas,
+   mínimo 2 leyes, figura percibida pero no explícita
+   ================================================================= */
+
+.rejilla-gestalt {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.tarjeta-gestalt {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  padding: 2.2rem;
+  box-shadow: var(--sombra-suave);
+  transition: box-shadow var(--transicion), transform var(--transicion);
+}
+.tarjeta-gestalt:hover {
+  box-shadow: var(--sombra-media);
+  transform: translateY(-3px);
+}
+
+.ley-nombre {
+  font-family: var(--fuente-titulo);
+  font-size: 1.25rem;
+  color: var(--color-tinta);
+  margin-bottom: 0.3rem;
+}
+.ley-desc {
+  font-size: 0.85rem;
+  color: var(--color-tinta-3);
+  font-style: italic;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
+}
+
+/* ── LEY DE CIERRE: Triángulo de Kanizsa ──── */
+.demo-cierre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  gap: 0;
+  position: relative;
+}
+
+.kanizsa-contenedor {
+  position: relative;
+  width: 130px;
+  height: 120px;
+}
+
+/* Tres sectores circulares apuntando al centro → el ojo percibe un triángulo */
+.kanizsa-pac {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  background: var(--color-acento);
+  border-radius: 50%;
+}
+/* Pac-man arriba, apuntando hacia abajo-centro */
+.kp-arriba {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  clip-path: polygon(50% 50%, 100% 100%, 0% 100%);
+}
+/* Pac-man abajo-izquierda, apuntando hacia arriba-derecha */
+.kp-bi {
+  bottom: 0;
+  left: 0;
+  clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
+}
+/* Pac-man abajo-derecha, apuntando hacia arriba-izquierda */
+.kp-bd {
+  bottom: 0;
+  right: 0;
+  clip-path: polygon(50% 50%, 0% 0%, 0% 100%);
+}
+
+/* Círculo abierto que el ojo cierra */
+.arco-abierto {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 6px solid var(--color-acento-frio);
+  /* Creamos el "hueco" con clip-path sin imagen */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 56% 100%, 0% 100%);
+  margin-left: 2.5rem;
+  transition: transform 0.5s ease;
+}
+.arco-abierto:hover {
+  transform: rotate(40deg);
+}
+
+/* ── LEY DE PROXIMIDAD ────────────────────── */
+.demo-proximidad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  height: 150px;
+}
+
+.grupo-puntos {
+  display: grid;
+  grid-template-columns: repeat(3, 14px);
+  gap: 5px;
+}
+.grupo-puntos.disperso {
+  gap: 20px;
+}
+.punto {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-acento);
+  transition: transform 0.3s ease;
+}
+.grupo-puntos.disperso .punto {
+  background: var(--color-acento-frio);
+}
+.grupo-puntos:hover .punto {
+  transform: scale(1.25);
+}
+
+.linea-sep-vertical {
+  width: 1px;
+  height: 70px;
+  background: var(--color-borde);
+}
+
+/* ── LEY DE CONTINUIDAD ─────────────────── */
+.demo-continuidad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+.svg-continuidad {
+  width: 100%;
+  max-width: 270px;
+  overflow: visible;
+}
+.curva-roja {
+  fill: none;
+  stroke: var(--color-acento);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 8 5;
+  animation: fluir 2.5s linear infinite;
+}
+.curva-azul {
+  fill: none;
+  stroke: var(--color-acento-frio);
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: fluir 2.5s linear infinite reverse;
+}
+@keyframes fluir {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -100; }
+}
+.punto-cruce {
+  fill: var(--color-acento-2);
+}
+
+/* ── LEY DE SIMILITUD ─────────────────────── */
+.demo-similitud {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  height: 150px;
+}
+.forma-sim {
+  transition: transform 0.25s ease;
+  cursor: default;
+}
+.forma-sim:hover {
+  transform: scale(1.3) rotate(10deg);
+}
+.circulo-sim {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-acento);
+}
+.cuadrado-sim {
+  width: 26px;
+  height: 26px;
+  background: var(--color-acento-frio);
+  border-radius: 3px;
+}
+.leyenda-sim {
+  font-size: 0.72rem;
+  color: var(--color-tinta-3);
+  text-align: center;
+  margin-top: 0.7rem;
+  font-family: var(--fuente-codigo);
+}
+
+/* =================================================================
+   ╔══════════════════════════════════════════════╗
+   ║  BLOQUE II – LABORATORIO DE COLOR            ║
+   ╚══════════════════════════════════════════════╝
+   ================================================================= */
+
+.rejilla-color {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.tarjeta-color {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  padding: 2rem;
+  box-shadow: var(--sombra-suave);
+  transition: all var(--transicion);
+}
+.tarjeta-color:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-media);
+}
+
+.tarjeta-color h3 {
+  font-family: var(--fuente-codigo);
+  font-size: 1rem;
+  color: var(--color-acento);
+  margin-bottom: 0.8rem;
+}
+.tarjeta-color p {
+  font-size: 0.88rem;
+  color: var(--color-tinta-2);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.tarjeta-color code {
+  background: var(--color-superficie-2);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-family: var(--fuente-codigo);
+  font-size: 0.82em;
+  color: var(--color-acento);
+}
+
+/* Muestras de color */
+.fila-muestras {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+}
+.muestra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.muestra-bloque {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--color-borde);
+  transition: transform 0.2s ease;
+  cursor: default;
+}
+.muestra-bloque:hover { transform: scale(1.2); }
+.muestra-etiqueta {
+  font-size: 0.62rem;
+  color: var(--color-tinta-3);
+  font-family: var(--fuente-codigo);
+}
+
+/* Colores reales RGB */
+.m-rgb-r  { background: rgb(220, 53, 69);  }
+.m-rgb-g  { background: rgb(40, 167, 69);  }
+.m-rgb-b  { background: rgb(0, 123, 255);  }
+.m-rgb-mix{ background: rgb(155, 89, 182); }
+
+/* Colores reales HSL – rueda analógica */
+.m-hsl-0  { background: hsl(0,   72%, 51%); }
+.m-hsl-30 { background: hsl(30,  80%, 52%); }
+.m-hsl-60 { background: hsl(60,  85%, 46%); }
+.m-hsl-120{ background: hsl(120, 60%, 40%); }
+.m-hsl-200{ background: hsl(200, 70%, 48%); }
+
+/* Contraste WCAG */
+.m-wcag-pass  { background: #155724; }
+.m-wcag-aa    { background: #0c3547; }
+.m-wcag-fail  { background: #95a5a6; }
+
+/* Franja de armonía análoga */
+.franja-armonia {
+  display: flex;
+  border-radius: var(--radio);
+  overflow: hidden;
+  height: 56px;
+  margin-top: 1rem;
+}
+.color-armonia {
+  flex: 1;
+  transition: flex 0.35s ease;
+}
+.color-armonia:hover { flex: 2.5; }
+
+.ca-1 { background: hsl(0,   70%, 52%); }
+.ca-2 { background: hsl(15,  73%, 52%); }
+.ca-3 { background: hsl(30,  78%, 52%); }
+.ca-4 { background: hsl(45,  80%, 50%); }
+.ca-5 { background: hsl(60,  82%, 47%); }
+
+.nota-armonia {
+  font-size: 0.72rem;
+  color: var(--color-tinta-3);
+  font-family: var(--fuente-codigo);
+  margin-top: 0.4rem;
+}
+
+/* Cajas de contraste */
+.caja-contraste {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--fuente-codigo);
+  margin-bottom: 0.4rem;
+}
+.cc-ok   { background: #1a472a; color: #a9dfbf; }
+.cc-aa   { background: #1a3a6e; color: #aed6f1; }
+.cc-fail { background: #7f8c8d; color: #bdc3c7; text-decoration: line-through; }
+
+/* =================================================================
+   ╔══════════════════════════════════════════════╗
+   ║  BLOQUE III – MUSEO DE LA EVOLUCIÓN WEB      ║
+   ╚══════════════════════════════════════════════╝
+   ================================================================= */
+
+.linea-tiempo {
+  position: relative;
+  margin-top: 3rem;
+}
+.linea-tiempo::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    var(--color-acento),
+    var(--color-acento-2),
+    var(--color-acento-frio)
+  );
+  transform: translateX(-50%);
+}
+
+.elemento-lt {
+  display: grid;
+  grid-template-columns: 1fr 64px 1fr;
+  align-items: start;
+  margin-bottom: 4.5rem;
+  position: relative;
+}
+
+.contenido-lt {
+  padding: 0 2rem;
+}
+.contenido-lt.izquierda {
+  grid-column: 1;
+  text-align: right;
+}
+.contenido-lt.derecha {
+  grid-column: 3;
+}
+
+.nodo-lt {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.3rem;
+  gap: 0.4rem;
+}
+.circulo-lt {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-acento);
+  border: 3px solid var(--color-fondo);
+  box-shadow: 0 0 0 2px var(--color-acento);
+  z-index: 1;
+}
+.anyo-lt {
+  font-family: var(--fuente-codigo);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--color-acento);
+  white-space: nowrap;
+}
+
+.era-lt {
+  font-family: var(--fuente-codigo);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-acento);
+  margin-bottom: 0.4rem;
+}
+.titulo-lt {
+  font-family: var(--fuente-titulo);
+  font-size: 1.2rem;
+  color: var(--color-tinta);
+  margin-bottom: 0.5rem;
+}
+.texto-lt {
+  font-size: 0.87rem;
+  color: var(--color-tinta-2);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+/* ── ELEMENTOS DE ÉPOCA ──────────────────── */
+
+/* BOTÓN AÑOS 90 – tablas, bordes toscos, relieve */
+.boton-90s {
+  display: inline-block;
+  background: #c0c0c0;
+  color: #000000;
+  border-top:    2px solid #ffffff;
+  border-left:   2px solid #ffffff;
+  border-right:  2px solid #5f5f5f;
+  border-bottom: 2px solid #5f5f5f;
+  padding: 4px 14px;
+  font-family: 'Times New Roman', serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+}
+.boton-90s:active {
+  border-top:    2px solid #5f5f5f;
+  border-left:   2px solid #5f5f5f;
+  border-right:  2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* TARJETA AÑOS 90 – tabla, bordes, tipografía serif */
+.tarjeta-90s {
+  display: inline-block;
+  background: #ffffff;
+  border: 3px solid #000000;
+  padding: 10px;
+  font-family: 'Times New Roman', serif;
+  font-size: 0.82rem;
+  color: #000;
+  max-width: 210px;
+}
+.tarjeta-90s table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 6px;
+}
+.tarjeta-90s td {
+  border: 1px solid #888;
+  padding: 2px 6px;
+  font-size: 0.78rem;
+}
+
+/* BOTÓN WEB 2.0 */
+.boton-2000s {
+  display: inline-block;
+  background: linear-gradient(to bottom, #5588cc, #3366aa);
+  color: #fff;
+  border: 1px solid #2255aa;
+  padding: 5px 18px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+/* BOTÓN FLAT (2010s) */
+.boton-flat {
+  display: inline-block;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* BOTÓN MODERNO – glassmorphism */
+.boton-moderno {
+  display: inline-block;
+  background: rgba(192,57,43,0.1);
+  color: var(--color-acento);
+  border: 1.5px solid rgba(192,57,43,0.4);
+  border-radius: 999px;
+  padding: 10px 28px;
+  font-family: var(--fuente-ui);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(192,57,43,0.12);
+  transition: all 0.25s ease;
+}
+.boton-moderno:hover {
+  background: rgba(192,57,43,0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(192,57,43,0.25);
+}
+
+/* TARJETA MODERNA – glassmorphism + bento */
+.tarjeta-moderna {
+  background: var(--color-superficie);
+  border-radius: var(--radio-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-media);
+  max-width: 240px;
+  transition: all 0.25s ease;
+}
+.tarjeta-moderna:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-fuerte);
+}
+.badge-moderna {
+  font-family: var(--fuente-codigo);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-acento);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+.titulo-card-moderna {
+  font-family: var(--fuente-titulo);
+  font-size: 1.1rem;
+  color: var(--color-tinta);
+  margin-bottom: 0.4rem;
+}
+.texto-card-moderna {
+  font-size: 0.82rem;
+  color: var(--color-tinta-2);
+  margin-bottom: 1rem;
+}
+
+/* Bento grid demo */
+.bento {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.7rem;
+  max-width: 260px;
+  margin-top: 1rem;
+}
+.bento-celda {
+  background: var(--color-superficie-2);
+  border-radius: var(--radio);
+  border: 1px solid var(--color-borde);
+  padding: 0.9rem;
+  font-size: 0.75rem;
+  color: var(--color-tinta-2);
+  font-family: var(--fuente-codigo);
+}
+.bento-celda.grande  { grid-column: 1; grid-row: 1 / 3; }
+.bento-celda.pequena { grid-column: 2; }
+.bento-celda.acento-bg {
+  background: var(--color-acento);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+/* =================================================================
+   ╔══════════════════════════════════════════════╗
+   ║  BLOQUE IV – ACCESIBILIDAD                   ║
+   ╚══════════════════════════════════════════════╝
+   ================================================================= */
+
+.rejilla-a11y {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.tarjeta-a11y {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  padding: 1.8rem;
+  box-shadow: var(--sombra-suave);
+  transition: all var(--transicion);
+}
+.tarjeta-a11y:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-media);
+}
+.icono-a11y {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+.tarjeta-a11y h3 {
+  font-family: var(--fuente-titulo);
+  font-size: 1.15rem;
+  color: var(--color-tinta);
+  margin-bottom: 0.5rem;
+}
+.tarjeta-a11y p {
+  font-size: 0.87rem;
+  color: var(--color-tinta-2);
+  line-height: 1.75;
+}
+.tarjeta-a11y code {
+  background: var(--color-superficie-2);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-family: var(--fuente-codigo);
+  font-size: 0.8em;
+  color: var(--color-acento);
+}
+
+/* Botón de foco demo */
+.boton-foco-demo {
+  margin-top: 1rem;
+  padding: 0.55rem 1.3rem;
+  background: var(--color-superficie-2);
+  border: 1.5px solid var(--color-borde);
+  border-radius: var(--radio);
+  color: var(--color-tinta);
+  font-family: var(--fuente-ui);
+  font-size: 0.87rem;
+  cursor: pointer;
+  display: block;
+  transition: all 0.2s;
+}
+.boton-foco-demo:focus {
+  outline: 4px solid var(--color-acento);
+  outline-offset: 3px;
+  background: var(--color-superficie);
+}
+
+/* Barra de progreso ARIA */
+.barra-progreso-contenedor {
+  height: 14px;
+  background: var(--color-superficie-2);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0.8rem 0 0.3rem;
+}
+.barra-progreso-fill {
+  height: 100%;
+  width: 72%;
+  background: linear-gradient(90deg, var(--color-acento), var(--color-acento-2));
+  border-radius: 999px;
+}
+.etiqueta-progreso {
+  font-size: 0.72rem;
+  color: var(--color-tinta-3);
+  font-family: var(--fuente-codigo);
+}
+
+/* Bloque de código semántico */
+.bloque-codigo {
+  background: var(--color-superficie-2);
+  border-radius: var(--radio);
+  padding: 1rem;
+  font-family: var(--fuente-codigo);
+  font-size: 0.75rem;
+  color: var(--color-tinta-3);
+  line-height: 2;
+  margin-top: 0.8rem;
+}
+.tag-correcto { color: #27ae60; font-weight: 700; }
+.tag-incorrecto { color: var(--color-acento); text-decoration: line-through; }
+
+/* =================================================================
+   HEURÍSTICAS DE NIELSEN
+   ================================================================= */
+.rejilla-heuristicas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.item-heuristica {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.2rem;
+  display: flex;
+  gap: 0.9rem;
+  box-shadow: var(--sombra-suave);
+  transition: all var(--transicion);
+}
+.item-heuristica:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-media);
+}
+.num-heuristica {
+  font-family: var(--fuente-codigo);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-acento);
+  min-width: 28px;
+  padding-top: 1px;
+}
+.texto-heuristica {
+  font-size: 0.83rem;
+  color: var(--color-tinta-2);
+  line-height: 1.65;
+}
+.texto-heuristica strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--color-tinta);
+  margin-bottom: 0.25rem;
+}
+
+/* =================================================================
+   FOOTER
+   ================================================================= */
+footer {
+  background: var(--color-superficie);
+  border-top: 1px solid var(--color-borde);
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: background-color var(--transicion), border-color var(--transicion);
+}
+.footer-interior {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+footer p {
+  font-size: 0.85rem;
+  color: var(--color-tinta-3);
+  font-family: var(--fuente-codigo);
+  line-height: 2;
+}
+footer strong { color: var(--color-acento); }
+
+/* =================================================================
+   ATAJOS DE TECLADO – visibles en los botones de tema (H7)
+   ================================================================= */
+.atajo-kbd {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-family: var(--fuente-codigo);
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 3px;
+  padding: 0 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+  letter-spacing: 0;
+  color: inherit;
+  opacity: 0.85;
+}
+.btn-tema[aria-pressed="true"] .atajo-kbd {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.5);
+}
+[data-tema="contraste"] .atajo-kbd {
+  background: rgba(0,0,0,0.3);
+  border-color: var(--color-tinta);
+  color: var(--color-tinta);
+}
+
+/* =================================================================
+   PANEL DE HERRAMIENTAS DE LECTURA – H5 prevención de errores
+   La previsualización muestra el efecto ANTES de activar el modo
+   ================================================================= */
+.panel-herramientas {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--sombra-suave);
+  transition: background-color var(--transicion), border-color var(--transicion);
+}
+
+.panel-herramientas-titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.2rem;
+  color: var(--color-tinta);
+  margin-bottom: 0.4rem;
+}
+
+.panel-herramientas-desc {
+  font-size: 0.88rem;
+  color: var(--color-tinta-2);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Grid de previsualización: una columna por modo */
+.previz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.previz-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Caja de previsualización – muestra el aspecto del modo ANTES de activarlo */
+.previz-preview {
+  border-radius: var(--radio);
+  border: 1px solid var(--color-borde);
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition: all var(--transicion);
+  min-height: 72px;
+  justify-content: center;
+}
+
+/* Previsualización del modo lectura: fondo crema, texto muy oscuro */
+.previz-lectura {
+  background: #fffef8;
+  border-color: #ccc;
+}
+.previz-lectura .previz-muestra-texto {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 2;
+  letter-spacing: 0.04em;
+}
+.previz-lectura .previz-muestra-sub {
+  font-size: 0.72rem;
+  color: #333;
+  font-family: var(--fuente-codigo);
+}
+
+/* Previsualización del modo dislexia: espaciado ampliado */
+.previz-dislexia {
+  background: var(--color-superficie-2);
+  border-color: var(--color-borde);
+}
+.previz-dislexia .previz-muestra-texto {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-tinta);
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+  line-height: 2.1;
+}
+.previz-dislexia .previz-muestra-sub {
+  font-size: 0.72rem;
+  color: var(--color-tinta-3);
+  font-family: var(--fuente-codigo);
+}
+
+/* Descripción bajo el botón */
+.previz-descripcion {
+  font-size: 0.76rem;
+  color: var(--color-tinta-3);
+  font-family: var(--fuente-codigo);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ================================================================= */
+:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =================================================================
+   ANIMACIONES – REDUCCIÓN DE MOVIMIENTO
+   ================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+}
+
+/* =================================================================
+   RESPONSIVE
+   ================================================================= */
+@media (max-width: 768px) {
+  .barra-nav { flex-direction: column; align-items: flex-start; }
+  .rejilla-gestalt { grid-template-columns: 1fr; }
+
+  .linea-tiempo::before { left: 22px; }
+  .elemento-lt {
+    grid-template-columns: 44px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .nodo-lt { grid-column: 1; grid-row: 1; }
+  .contenido-lt.izquierda {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 0;
+  }
+  .contenido-lt.derecha {
+    grid-column: 2;
+    grid-row: 1;
+    padding-left: 1rem;
+    padding-right: 0;
+  }
+
+  .rejilla-a11y { grid-template-columns: 1fr; }
+  .rejilla-heuristicas { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  .rejilla-heuristicas { grid-template-columns: 1fr; }
+  .nav-enlaces { display: none; }
+}

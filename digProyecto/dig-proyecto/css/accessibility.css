@@ -1,0 +1,138 @@
+/* ============================================================
+   DIG – accessibility.css
+   Hoja de estilos dedicada a accesibilidad y lectura
+   para personas con discapacidad visual
+   ============================================================ */
+
+/* ── TAMAÑO DE FUENTE MÍNIMO ────────────────────────────── */
+body { font-size: max(16px, 1rem); }
+p, li, td, th { font-size: max(15px, 0.94rem); line-height: 1.75; }
+
+/* ── ENLACES SIEMPRE VISIBLES ───────────────────────────── */
+a {
+  color: var(--accent-cold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+a:visited { color: #8e44ad; }
+a:hover, a:focus {
+  color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── FOCUS RING FUERTE ──────────────────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--accent) !important;
+  outline-offset: 4px !important;
+  border-radius: 4px;
+  box-shadow: 0 0 0 5px rgba(192, 57, 43, 0.25);
+}
+
+/* ── BOTONES ACCESIBLES ─────────────────────────────────── */
+button:focus-visible,
+.theme-btn:focus-visible {
+  outline: 3px solid var(--accent) !important;
+  outline-offset: 4px !important;
+}
+
+/* ── ALTO CONTRASTE (prefers-contrast: more) ────────────── */
+@media (prefers-contrast: more) {
+  :root {
+    --bg: #ffffff;
+    --ink: #000000;
+    --ink-2: #1a1a1a;
+    --accent: #b00000;
+    --accent-cold: #00008b;
+    --border: #000000;
+    --surface: #ffffff;
+    --surface-2: #f0f0f0;
+  }
+  a { color: #00008b; }
+  button { border: 2px solid #000; }
+}
+
+/* ── MODO OSCURO PREFERIDO (OS level) ───────────────────── */
+@media (prefers-color-scheme: dark) {
+  /* Respetamos el tema manual si está activo.
+     Esto solo aplica si el usuario no ha seleccionado manualmente */
+  :root:not([data-theme]) {
+    --bg:      #131110;
+    --bg-alt:  #1c1917;
+    --surface: #242220;
+    --ink:     #f0ece4;
+    --ink-2:   #b5afa6;
+    --border:  #3a3632;
+  }
+}
+
+/* ── REDUCCIÓN DE MOVIMIENTO ────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+}
+
+/* ── TAMAÑO DE TEXTO AGRANDADO ──────────────────────────── */
+/* Clase utilitaria: añadir al body para lectura amplificada */
+.text-lg p, .text-lg li, .text-lg td {
+  font-size: 1.2rem !important;
+  line-height: 1.9 !important;
+}
+.text-lg h1 { font-size: 2.6rem !important; }
+.text-lg h2 { font-size: 2rem   !important; }
+.text-lg h3 { font-size: 1.5rem !important; }
+
+/* ── ESPACIADO ENTRE LETRAS (dislexia) ──────────────────── */
+/* Activable opcionalmente */
+.dyslexia-friendly {
+  font-family: 'OpenDyslexic', Arial, sans-serif;
+  letter-spacing: 0.05em;
+  word-spacing: 0.15em;
+  line-height: 2;
+}
+
+/* ── EVITAR TEXTO SOBRE IMAGEN SIN CONTRASTE ────────────── */
+.text-over-image {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  color: #ffffff;
+}
+
+/* ── TABLAS ACCESIBLES ──────────────────────────────────── */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+th {
+  background: var(--surface-2);
+  font-weight: 700;
+  color: var(--ink);
+}
+tr:nth-child(even) { background: var(--bg-alt); }
+tr:focus-within { outline: 2px solid var(--accent); }
+
+/* ── LISTAS LEGIBLES ────────────────────────────────────── */
+ul, ol {
+  padding-left: 1.6rem;
+}
+li { margin-bottom: 0.35rem; }
+
+/* ── IMPRESIÓN ──────────────────────────────────────────── */
+@media print {
+  nav, .theme-switcher, .skip-link { display: none; }
+  body { font-size: 12pt; color: #000; background: #fff; }
+  h1, h2, h3 { color: #000; page-break-after: avoid; }
+  a::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
+  .gestalt-stage, .color-grid, .a11y-grid { display: block; }
+}

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portafolio conceptual sobre la psicología del diseño y la evolución tecnológica web. Proyecto Final DIG." />
+  <meta name="author" content="DIG – Diseño de Interfaces Gráficas" />
+  <title>Percepción y Evolución en la Interfaz Web · DIG</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/accessibility.css" />
+
+  <!-- Google Fonts preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+
+  <!-- SKIP LINK: accesibilidad para teclado / lectores de pantalla -->
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV + THEME SWITCHER
+  ══════════════════════════════════════════════════════ -->
+  <nav role="navigation" aria-label="Navegación principal">
+    <a href="#" class="nav-logo" aria-label="DIG – Inicio">DIG</a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#gestalt"       aria-label="Ir a: Gestalt">Gestalt</a></li>
+      <li><a href="#color"         aria-label="Ir a: Color">Color</a></li>
+      <li><a href="#museum"        aria-label="Ir a: Museo Web">Museo Web</a></li>
+      <li><a href="#accessibility" aria-label="Ir a: Accesibilidad">Accesibilidad</a></li>
+    </ul>
+
+    <!-- Conmutador de temas -->
+    <div class="theme-switcher" role="group" aria-label="Selector de tema visual">
+      <button class="theme-btn active" data-theme-target="light"    aria-pressed="true"  onclick="setTheme('light')">☀ Claro</button>
+      <button class="theme-btn"        data-theme-target="dark"     aria-pressed="false" onclick="setTheme('dark')">☾ Oscuro</button>
+      <button class="theme-btn"        data-theme-target="contrast" aria-pressed="false" onclick="setTheme('contrast')">◑ Alto Contraste</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ──────────────────────────────────────────────────
+         BLOQUE I · LA PSICOLOGÍA DE LA FORMA (GESTALT)
+    ─────────────────────────────────────────────────── -->
+    <section id="gestalt" aria-labelledby="gestalt-title">
+
+      <p class="section-label" aria-hidden="true">Bloque I</p>
+      <h1 id="gestalt-title" class="section-title">La Psicología de la Forma</h1>
+      <p class="section-desc">
+        Las leyes de la <strong>Gestalt</strong> explican cómo el cerebro humano organiza la percepción visual
+        en estructuras coherentes. A continuación, cuatro demostraciones creadas <em>únicamente</em>
+        con HTML y CSS — sin imágenes externas.
+      </p>
+
+      <div class="gestalt-stage" role="list">
+
+        <!-- LEY DE CIERRE -->
+        <article class="gestalt-card" role="listitem" aria-labelledby="ley-cierre">
+          <h2 id="ley-cierre" class="timeline-title" style="font-family:var(--font-display);font-size:1.3rem;color:var(--ink);margin-bottom:.4rem;">Ley de Cierre</h2>
+          <p>El cerebro completa formas incompletas para percibir figuras cerradas.</p>
+
+          <div class="closure-demo" role="img" aria-label="Tres arcos abiertos que el ojo percibe como círculos cerrados, y una figura de Kanizsa donde tres cuñas evocan un triángulo equilátero invisible">
+
+            <!-- Círculo con hueco — el ojo lo cierra -->
+            <div class="closure-arc" title="Arco abierto que el ojo completa como un círculo"></div>
+
+            <!-- Triángulo de Kanizsa: 3 sectores circulares implican un triángulo -->
+            <div class="kanizsa-wrap" aria-label="Triángulo de Kanizsa" title="Triángulo de Kanizsa">
+              <div class="kanizsa-pac top"></div>
+              <div class="kanizsa-pac bl"></div>
+              <div class="kanizsa-pac br"></div>
+            </div>
+
+            <!-- Segundo arco con rotación diferente -->
+            <div class="closure-arc" style="transform:rotate(120deg); border-color:var(--accent-cold);" title="Segundo arco, también completado por la percepción"></div>
+          </div>
+        </article>
+
+        <!-- LEY DE PROXIMIDAD -->
+        <article class="gestalt-card" role="listitem" aria-labelledby="ley-proximidad">
+          <h2 id="ley-proximidad" class="timeline-title" style="font-family:var(--font-display);font-size:1.3rem;color:var(--ink);margin-bottom:.4rem;">Ley de Proximidad</h2>
+          <p>Los elementos cercanos entre sí se perciben como un grupo unitario.</p>
+
+          <div class="proximity-demo" role="img" aria-label="Dos grupos de puntos: los de la izquierda están juntos y se perciben como un bloque; los de la derecha están separados y se perciben como elementos individuales">
+
+            <!-- Grupo denso → percibido como "un bloque" -->
+            <div>
+              <div class="dot-group" aria-label="Grupo compacto de 9 puntos" style="margin-bottom:0.4rem;">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+              </div>
+              <p style="font-size:0.7rem;color:var(--ink-3);text-align:center;font-family:var(--font-mono);">grupo</p>
+            </div>
+
+            <div class="dot-separator" aria-hidden="true"></div>
+
+            <!-- Grupo disperso → percibido como elementos separados -->
+            <div>
+              <div class="dot-group spaced" aria-label="Grupo disperso de 9 puntos" style="margin-bottom:0.4rem;">
+                <div class="dot" style="background:var(--accent-cold)"></div>
+                <div class="dot" style="background:var(--accent-cold)"></div>
+                <div class="dot" style="background:var(--accent-cold)"></div>
+                <div class="dot" style="background:var(--accent-cold)"></div>
+                <div class="dot" style="background:var(--accent-cold)"></div>
+                <div class="dot" style="background:var(--accent-cold)"></div>
+                <div class="dot" style="background:var(--accent-cold)"></div>
+                <div class="dot" style="background:var(--accent-cold)"></div>
+                <div class="dot" style="background:var(--accent-cold)"></div>
+              </div>
+              <p style="font-size:0.7rem;color:var(--ink-3);text-align:center;font-family:var(--font-mono);">separados</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- LEY DE CONTINUIDAD -->
+        <article class="gestalt-card" role="listitem" aria-labelledby="ley-continuidad">
+          <h2 id="ley-continuidad" class="timeline-title" style="font-family:var(--font-display);font-size:1.3rem;color:var(--ink);margin-bottom:.4rem;">Ley de Continuidad</h2>
+          <p>El ojo sigue la trayectoria más suave y continua entre elementos.</p>
+
+          <div class="continuity-demo" role="img" aria-label="Dos curvas entrelazadas que el ojo sigue como trayectorias continuas independientes, en lugar de percibir intersecciones">
+            <svg class="continuity-svg" viewBox="0 0 260 100" aria-hidden="true" focusable="false">
+              <!-- Curva sinusoidal superior – el ojo la "sigue" aunque se cruce con la otra -->
+              <path class="continuity-path"
+                    d="M10,50 C40,10 80,10 110,50 C140,90 180,90 210,50 C230,25 245,25 255,50"
+                    stroke-dasharray="6 4" stroke-dashoffset="0"/>
+              <!-- Curva que se cruza — sigue siendo percibida como otra línea distinta -->
+              <path class="continuity-path-2"
+                    d="M10,50 C40,90 80,90 110,50 C140,10 180,10 210,50 C230,75 245,75 255,50"
+                    stroke-dasharray="6 4" stroke-dashoffset="0"/>
+              <!-- Puntos de intersección -->
+              <circle cx="110" cy="50" r="4" fill="var(--accent-2)" />
+              <circle cx="210" cy="50" r="4" fill="var(--accent-2)" />
+            </svg>
+          </div>
+        </article>
+
+        <!-- LEY DE SIMILITUD -->
+        <article class="gestalt-card" role="listitem" aria-labelledby="ley-similitud">
+          <h2 id="ley-similitud" class="timeline-title" style="font-family:var(--font-display);font-size:1.3rem;color:var(--ink);margin-bottom:.4rem;">Ley de Similitud</h2>
+          <p>Los elementos con el mismo color o forma se perciben como un mismo grupo.</p>
+
+          <div class="similarity-demo" role="img" aria-label="Cuadrícula de formas alternando círculos rojos y cuadrados azules. Aunque estén mezclados, el ojo agrupa los círculos entre sí y los cuadrados entre sí por su similitud de forma y color">
+            <!-- Mezclados, pero el ojo agrupa por forma/color -->
+            <div class="sim-shape"><div class="sim-circle"></div></div>
+            <div class="sim-shape"><div class="sim-square"></div></div>
+            <div class="sim-shape"><div class="sim-circle"></div></div>
+            <div class="sim-shape"><div class="sim-square"></div></div>
+            <div class="sim-shape"><div class="sim-circle"></div></div>
+            <div class="sim-shape"><div class="sim-square"></div></div>
+            <div class="sim-shape"><div class="sim-circle"></div></div>
+            <div class="sim-shape"><div class="sim-square"></div></div>
+          </div>
+          <p style="font-size:0.75rem;color:var(--ink-3);text-align:center;margin-top:0.8rem;font-family:var(--font-mono);">
+            ● percibidos como grupo · ■ percibidos como otro grupo
+          </p>
+        </article>
+
+      </div><!-- /gestalt-stage -->
+    </section>
+
+    <hr class="section-divider" aria-hidden="true" />
+
+    <!-- ──────────────────────────────────────────────────
+         BLOQUE II · LABORATORIO DE COLOR
+    ─────────────────────────────────────────────────── -->
+    <section id="color" aria-labelledby="color-title">
+      <div class="inner">
+
+        <p class="section-label" aria-hidden="true">Bloque II</p>
+        <h2 id="color-title" class="section-title">Laboratorio de Color</h2>
+        <p class="section-desc">
+          Los espacios de color determinan cómo representamos y manipulamos el color en pantalla.
+          Usa el conmutador de temas de la barra superior para explorar Claro, Oscuro y Alto Contraste.
+        </p>
+
+        <div class="color-grid" role="list">
+
+          <!-- RGB -->
+          <article class="color-card" role="listitem" aria-labelledby="card-rgb">
+            <h3 id="card-rgb">
+              <span aria-hidden="true">🔴🟢🔵</span> Espacio RGB
+            </h3>
+            <p>
+              <strong>RGB</strong> (Red, Green, Blue) define cada color como una mezcla
+              de tres canales de luz aditiva. Cada canal va de <code>0</code> a <code>255</code>.
+              Es el modelo nativo de las pantallas.
+            </p>
+            <p>
+              Ejemplo: <code>rgb(220, 53, 69)</code> es un rojo intenso;
+              mezclar los tres al máximo produce blanco <code>rgb(255,255,255)</code>.
+            </p>
+            <div class="color-swatch-row" aria-label="Muestras de color RGB">
+              <div>
+                <div class="swatch swatch-rgb-r" title="rgb(220,53,69) — Rojo" aria-label="Rojo rgb(220,53,69)"></div>
+                <p class="swatch-label">R</p>
+              </div>
+              <div>
+                <div class="swatch swatch-rgb-g" title="rgb(40,167,69) — Verde" aria-label="Verde rgb(40,167,69)"></div>
+                <p class="swatch-label">G</p>
+              </div>
+              <div>
+                <div class="swatch swatch-rgb-b" title="rgb(0,123,255) — Azul" aria-label="Azul rgb(0,123,255)"></div>
+                <p class="swatch-label">B</p>
+              </div>
+              <div>
+                <div class="swatch swatch-rgb-mix" title="rgb(160,90,180) — Mezcla" aria-label="Mezcla rgb(160,90,180)"></div>
+                <p class="swatch-label">Mix</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- HSL -->
+          <article class="color-card" role="listitem" aria-labelledby="card-hsl">
+            <h3 id="card-hsl">
+              <span aria-hidden="true">🌈</span> Espacio HSL
+            </h3>
+            <p>
+              <strong>HSL</strong> (Hue, Saturation, Lightness) es más intuitivo: el
+              <em>matiz</em> va de 0° a 360° en la rueda de color, la
+              <em>saturación</em> y la <em>luminosidad</em> del 0 % al 100 %.
+            </p>
+            <p>
+              Es ideal para ajustar tonos armónicos simplemente rotando el matiz.
+              Ejemplo: <code>hsl(200, 70%, 50%)</code> es un azul vivo.
+            </p>
+            <div class="color-swatch-row" aria-label="Muestras de color HSL con matices progresivos">
+              <div><div class="swatch swatch-hsl-1" title="hsl(0,72%,51%)"   aria-label="0°"></div><p class="swatch-label">0°</p></div>
+              <div><div class="swatch swatch-hsl-2" title="hsl(30,85%,55%)"  aria-label="30°"></div><p class="swatch-label">30°</p></div>
+              <div><div class="swatch swatch-hsl-3" title="hsl(60,90%,45%)"  aria-label="60°"></div><p class="swatch-label">60°</p></div>
+              <div><div class="swatch swatch-hsl-4" title="hsl(120,60%,40%)" aria-label="120°"></div><p class="swatch-label">120°</p></div>
+              <div><div class="swatch swatch-hsl-5" title="hsl(200,70%,50%)" aria-label="200°"></div><p class="swatch-label">200°</p></div>
+            </div>
+          </article>
+
+          <!-- Contraste -->
+          <article class="color-card" role="listitem" aria-labelledby="card-contrast">
+            <h3 id="card-contrast">
+              <span aria-hidden="true">◑</span> Contraste y WCAG
+            </h3>
+            <p>
+              Las <strong>WCAG 2.1</strong> exigen un ratio de contraste mínimo de
+              <strong>4.5:1</strong> (nivel AA) para texto normal. Textos grandes o de
+              interfaz requieren al menos <strong>3:1</strong>.
+            </p>
+            <div class="contrast-demo" role="list" aria-label="Ejemplos de contraste: aprobado y suspendido">
+              <div class="contrast-row cr-pass" role="listitem">✓ PASS – ratio 7.2:1 (AA + AAA)</div>
+              <div class="contrast-row cr-aa"   role="listitem">✓ PASS – ratio 4.6:1 (AA)</div>
+              <div class="contrast-row cr-fail" role="listitem">✗ FAIL – ratio 1.9:1 (insuficiente)</div>
+            </div>
+          </article>
+
+          <!-- Armonía -->
+          <article class="color-card" role="listitem" aria-labelledby="card-harmony">
+            <h3 id="card-harmony">
+              <span aria-hidden="true">🎨</span> Armonía Cromática
+            </h3>
+            <p>
+              Esta página usa una paleta <strong>análoga</strong>: rojo (&asymp;0°),
+              naranja (30°), amarillo (60°) como acento cálido, con azul (210°) como
+              contrapunto frío. Los temas oscuro y de alto contraste mantienen
+              la misma lógica.
+            </p>
+            <div class="harmony-strip" aria-label="Franja de colores análogos del rojo al amarillo" title="Paleta análoga: rojo → naranja → amarillo">
+              <div class="harmony-color h1" aria-label="Rojo hsl(0,70%,52%)"></div>
+              <div class="harmony-color h2" aria-label="Naranja-rojo hsl(15,72%,52%)"></div>
+              <div class="harmony-color h3" aria-label="Naranja hsl(30,75%,52%)"></div>
+              <div class="harmony-color h4" aria-label="Naranja-amarillo hsl(45,78%,52%)"></div>
+              <div class="harmony-color h5" aria-label="Amarillo hsl(60,80%,48%)"></div>
+            </div>
+            <p style="font-size:0.72rem;color:var(--ink-3);margin-top:0.5rem;font-family:var(--font-mono);">Hover sobre la franja para expandir cada tono</p>
+          </article>
+
+        </div><!-- /color-grid -->
+      </div>
+    </section>
+
+    <hr class="section-divider" aria-hidden="true" />
+
+    <!-- ──────────────────────────────────────────────────
+         BLOQUE III · MUSEO DE LA EVOLUCIÓN WEB
+    ─────────────────────────────────────────────────── -->
+    <section id="museum" aria-labelledby="museum-title">
+
+      <p class="section-label" aria-hidden="true">Bloque III</p>
+      <h2 id="museum-title" class="section-title">Museo de la Evolución Web</h2>
+      <p class="section-desc">
+        Del HTML de tabla al glassmorphism. Un recorrido por cómo ha cambiado
+        la estética y los paradigmas del diseño web en tres décadas.
+      </p>
+
+      <div class="timeline" role="list" aria-label="Línea de tiempo de la evolución del diseño web">
+
+        <!-- 1991–1999 -->
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-content left">
+            <p class="timeline-era">1991–1999</p>
+            <h3 class="timeline-title">La Era del HTML Puro</h3>
+            <p class="timeline-text">
+              Las páginas se construían con tablas anidadas, bordes <code>border="1"</code>,
+              fondos de mosaico GIF y texto parpadeante. No existía CSS como estándar.
+              La experiencia dependía por completo del navegador.
+            </p>
+            <!-- Botón estilo años 90 -->
+            <button class="btn-90s" type="button" aria-label="Ejemplo de botón estilo años 90">Click Here!</button>
+          </div>
+
+          <div class="timeline-node" aria-hidden="true">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">1995</span>
+          </div>
+
+          <div class="timeline-content right" style="padding-top:2rem;">
+            <!-- Tarjeta estilo años 90 con tabla -->
+            <div class="card-90s" role="img" aria-label="Tarjeta de visita al estilo web de los años 90: tabla con bordes gruesos, texto serif y colores primarios">
+              <strong style="color:#cc0000;">★ MI WEB ★</strong><br>
+              <table>
+                <tr><td><b>Autor:</b></td><td>Webmaster</td></tr>
+                <tr><td><b>Email:</b></td><td>user@aol.com</td></tr>
+                <tr><td><b>Hits:</b></td><td>9823 🔥</td></tr>
+              </table>
+              <p style="margin-top:6px;font-size:0.75rem;color:#000080;">
+                Best viewed in IE 4.0 · 800×600
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2000–2009 -->
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-content left" style="padding-top:2rem;">
+            <div style="background:#dde8f8;border:1px solid #aabbdd;border-radius:4px;padding:1rem;max-width:220px;font-family:Verdana,sans-serif;font-size:0.78rem;" role="img" aria-label="Tarjeta de perfil estilo Web 2.0: gradientes azulados, bordes redondeados suaves y tipografía Verdana">
+              <div style="background:linear-gradient(#6699cc,#3366aa);color:#fff;padding:6px 10px;margin:-1rem -1rem 0.8rem;font-weight:bold;font-size:0.82rem;">Perfil de Usuario</div>
+              <p style="margin:0 0 4px;"><b>Nombre:</b> Juan García</p>
+              <p style="margin:0 0 4px;"><b>Ciudad:</b> Madrid</p>
+              <p style="margin:0;color:#336699;">Ver perfil completo &raquo;</p>
+            </div>
+          </div>
+
+          <div class="timeline-node" aria-hidden="true">
+            <div class="timeline-dot" style="background:var(--accent-2);box-shadow:0 0 0 2px var(--accent-2)"></div>
+            <span class="timeline-year">2005</span>
+          </div>
+
+          <div class="timeline-content right">
+            <p class="timeline-era">2000–2009</p>
+            <h3 class="timeline-title">Web 2.0 y los Gradientes</h3>
+            <p class="timeline-text">
+              CSS2 popularizó los fondos degradados por imagen, las esquinas 
+              redondeadas con trucos de sprites y los efectos de brillo "aqua".
+              Flash dominaba la animación. jQuery democratizó el JavaScript.
+            </p>
+            <button class="btn-2000s" type="button" aria-label="Ejemplo de botón estilo Web 2.0 con gradiente azul">Enviar formulario</button>
+          </div>
+        </div>
+
+        <!-- 2010–2017 -->
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-content left">
+            <p class="timeline-era">2010–2017</p>
+            <h3 class="timeline-title">Flat Design y Material</h3>
+            <p class="timeline-text">
+              Apple y Google impusieron el <em>flat design</em>: sin sombras falsas,
+              sin texturas, colores puros y tipografía como protagonista.
+              El diseño responsivo se convirtió en estándar con Bootstrap.
+            </p>
+            <button class="btn-flat" type="button" aria-label="Ejemplo de botón flat design, sin relieve ni gradiente">ENVIAR</button>
+          </div>
+
+          <div class="timeline-node" aria-hidden="true">
+            <div class="timeline-dot" style="background:var(--accent-cold);box-shadow:0 0 0 2px var(--accent-cold)"></div>
+            <span class="timeline-year">2014</span>
+          </div>
+
+          <div class="timeline-content right" style="padding-top:2rem;">
+            <!-- Tarjeta flat -->
+            <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.18);padding:1.2rem;max-width:220px;" role="img" aria-label="Tarjeta de producto con diseño plano: color sólido, sombra suave, tipografía Helvetica">
+              <div style="height:50px;background:#3498db;border-radius:2px 2px 0 0;margin:-1.2rem -1.2rem 0.8rem;"></div>
+              <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.85rem;font-weight:700;margin-bottom:4px;color:#2c3e50;">Producto Destacado</p>
+              <p style="font-size:0.78rem;color:#7f8c8d;">Diseño limpio, sin adornos innecesarios.</p>
+              <p style="color:#3498db;font-size:0.78rem;margin-top:8px;font-family:'Helvetica Neue',sans-serif;font-weight:600;">VER MÁS →</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2018–hoy -->
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-content left" style="padding-top:2rem;">
+            <!-- Tarjeta modern glassmorphism -->
+            <div class="card-modern" role="img" aria-label="Tarjeta de producto moderna con efecto glassmorphism: fondo translúcido, bordes difusos y sombras profundas">
+              <p class="card-modern-badge">Nuevo · 2024</p>
+              <h4 class="card-modern-title">Glassmorphism Card</h4>
+              <p class="card-modern-text">Superficies translúcidas, sombras profundas y radios generosos.</p>
+              <div style="margin-top:1rem;">
+                <button class="btn-modern" type="button" aria-label="Botón moderno con efecto glassmorphism">Explorar →</button>
+              </div>
+            </div>
+
+            <!-- Bento grid -->
+            <div class="bento-grid" role="img" aria-label="Ejemplo de diseño bento grid: módulos de diferente tamaño organizados como una caja de bento japonesa">
+              <div class="bento-cell big">
+                <strong style="display:block;margin-bottom:.3rem;color:var(--ink);font-size:.85rem;">Bento Grid</strong>
+                Módulos de tamaño variable que crean ritmo visual sin perder orden.
+              </div>
+              <div class="bento-cell small" style="background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">✦</div>
+              <div class="bento-cell small" style="font-size:0.7rem;">CSS Grid<br>2024</div>
+            </div>
+          </div>
+
+          <div class="timeline-node" aria-hidden="true">
+            <div class="timeline-dot" style="background:var(--accent);box-shadow:0 0 0 2px var(--accent)"></div>
+            <span class="timeline-year">2023</span>
+          </div>
+
+          <div class="timeline-content right">
+            <p class="timeline-era">2018 – hoy</p>
+            <h3 class="timeline-title">Glassmorphism y Bento Grid</h3>
+            <p class="timeline-text">
+              CSS Grid, <code>backdrop-filter</code> y las variables nativas
+              permiten interfaces con profundidad real. El <em>glassmorphism</em>
+              y el <em>bento grid</em> dominan la identidad visual de productos tech.
+              La accesibilidad pasa a ser requisito, no opción.
+            </p>
+            <button class="btn-modern" type="button" aria-label="Explorar el diseño moderno actual">Explorar →</button>
+          </div>
+        </div>
+
+      </div><!-- /timeline -->
+    </section>
+
+    <hr class="section-divider" aria-hidden="true" />
+
+    <!-- ──────────────────────────────────────────────────
+         BLOQUE IV · ACCESIBILIDAD
+    ─────────────────────────────────────────────────── -->
+    <section id="accessibility" aria-labelledby="a11y-title">
+      <div class="inner">
+
+        <p class="section-label" aria-hidden="true">Bloque IV</p>
+        <h2 id="a11y-title" class="section-title">Compromiso con la Accesibilidad</h2>
+        <p class="section-desc">
+          La accesibilidad no es un extra: es un derecho. Esta web implementa múltiples
+          técnicas para garantizar que cualquier persona, independientemente de su
+          capacidad visual o motriz, pueda navegar y comprender su contenido.
+        </p>
+
+        <div class="a11y-grid" role="list">
+
+          <!-- HTML Semántico -->
+          <article class="a11y-card" role="listitem" aria-labelledby="a11y-semantic">
+            <span class="a11y-icon" role="img" aria-hidden="true">🏗️</span>
+            <h3 id="a11y-semantic">HTML Semántico</h3>
+            <p>Usar las etiquetas correctas permite a los lectores de pantalla entender la estructura.</p>
+            <div class="semantic-demo" aria-label="Comparación de HTML semántico correcto vs incorrecto">
+              <div><span class="tag-good">&lt;nav&gt;</span> navegación</div>
+              <div><span class="tag-bad">&lt;div class="nav"&gt;</span></div>
+              <div><span class="tag-good">&lt;main&gt;</span> contenido</div>
+              <div><span class="tag-good">&lt;article&gt;</span> unidad</div>
+              <div><span class="tag-good">&lt;button&gt;</span> acción</div>
+              <div><span class="tag-bad">&lt;div onclick&gt;</span></div>
+            </div>
+          </article>
+
+          <!-- ARIA -->
+          <article class="a11y-card" role="listitem" aria-labelledby="a11y-aria">
+            <span class="a11y-icon" role="img" aria-hidden="true">🎤</span>
+            <h3 id="a11y-aria">ARIA y Roles</h3>
+            <p>
+              Los atributos <code>aria-label</code>, <code>aria-pressed</code> y <code>role</code>
+              enriquecen la semántica de elementos interactivos sin equivalente HTML nativo.
+            </p>
+            <div class="aria-demo">
+              <div class="aria-progress"
+                   role="progressbar"
+                   aria-valuenow="68"
+                   aria-valuemin="0"
+                   aria-valuemax="100"
+                   aria-label="Progreso de implementación de accesibilidad: 68%">
+                <div class="aria-progress-bar"></div>
+              </div>
+              <p class="aria-label">role="progressbar" aria-valuenow="68"</p>
+            </div>
+          </article>
+
+          <!-- Contraste -->
+          <article class="a11y-card" role="listitem" aria-labelledby="a11y-contrast">
+            <span class="a11y-icon" role="img" aria-hidden="true">🔲</span>
+            <h3 id="a11y-contrast">Contraste WCAG AA</h3>
+            <p>
+              Todos los textos de esta web superan el ratio de contraste
+              <strong>4.5:1</strong> exigido por WCAG 2.1 nivel AA,
+              incluso en modo oscuro y en alto contraste.
+            </p>
+            <div class="contrast-demo" role="list" aria-label="Muestras de contraste que superan el nivel AA">
+              <div class="contrast-row cr-pass" role="listitem">✓ Texto normal – 7.2:1</div>
+              <div class="contrast-row cr-aa"   role="listitem">✓ Acento frío – 4.6:1</div>
+              <div class="contrast-row cr-fail" role="listitem">✗ Ejemplo fallido – 1.9:1</div>
+            </div>
+          </article>
+
+          <!-- Navegación teclado -->
+          <article class="a11y-card" role="listitem" aria-labelledby="a11y-keyboard">
+            <span class="a11y-icon" role="img" aria-hidden="true">⌨️</span>
+            <h3 id="a11y-keyboard">Navegación con Teclado</h3>
+            <p>
+              Todo elemento interactivo es alcanzable con <kbd>Tab</kbd> y
+              activable con <kbd>Enter</kbd> o <kbd>Espacio</kbd>.
+              El <em>skip link</em> en la cabecera permite saltar al contenido.
+            </p>
+            <button class="focus-demo-btn" type="button" aria-label="Botón de ejemplo: prueba el foco con la tecla Tab">
+              Pulsa Tab para ver el foco →
+            </button>
+          </article>
+
+          <!-- Reducción movimiento -->
+          <article class="a11y-card" role="listitem" aria-labelledby="a11y-motion">
+            <span class="a11y-icon" role="img" aria-hidden="true">⏸️</span>
+            <h3 id="a11y-motion">Reducción de Movimiento</h3>
+            <p>
+              La media query <code>prefers-reduced-motion: reduce</code>
+              desactiva todas las animaciones CSS para usuarios con vestibular
+              sensibility o epilepsia fotosensible.
+            </p>
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-3);margin-top:0.8rem;background:var(--surface-2);padding:0.8rem;border-radius:var(--radius);line-height:1.9;">
+              @media (prefers-reduced-motion: reduce) {<br>
+              &nbsp;&nbsp;* { animation: none !important; }<br>
+              }
+            </div>
+          </article>
+
+          <!-- Texto alternativo -->
+          <article class="a11y-card" role="listitem" aria-labelledby="a11y-alt">
+            <span class="a11y-icon" role="img" aria-hidden="true">🖼️</span>
+            <h3 id="a11y-alt">Texto Alternativo y Alt</h3>
+            <p>
+              Cada elemento visual de esta página incluye un <code>aria-label</code>
+              descriptivo o un atributo <code>alt</code>. Los elementos puramente
+              decorativos tienen <code>aria-hidden="true"</code> para no contaminar
+              la experiencia auditiva.
+            </p>
+          </article>
+
+        </div><!-- /a11y-grid -->
+
+        <!-- Autoevaluación heurística Nielsen -->
+        <div style="margin-top:4rem;">
+          <h3 style="font-family:var(--font-display);font-size:1.6rem;color:var(--ink);margin-bottom:0.5rem;">Autoevaluación Heurística (Nielsen)</h3>
+          <p style="font-size:0.9rem;color:var(--ink-2);margin-bottom:1.5rem;">
+            Evaluación propia del producto basada en las 10 Heurísticas de Jakob Nielsen.
+          </p>
+
+          <div class="heuristics-list" role="list" aria-label="Las 10 heurísticas de Nielsen aplicadas a esta web">
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H1</span>
+              <div class="heuristic-text">
+                <strong>Visibilidad del estado</strong>
+                El conmutador de temas muestra el botón activo con fondo de acento. La barra sticky confirma la sección en pantalla.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H2</span>
+              <div class="heuristic-text">
+                <strong>Coincidencia sistema–mundo real</strong>
+                Las metáforas (☀ claro, ☾ oscuro, ◑ contraste) son reconocibles. Los botones 90s usan terminología de época.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H3</span>
+              <div class="heuristic-text">
+                <strong>Control y libertad</strong>
+                El usuario puede cambiar de tema en cualquier momento. El skip link permite obviar la nav.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H4</span>
+              <div class="heuristic-text">
+                <strong>Consistencia y estándares</strong>
+                Variables CSS centralizadas garantizan coherencia tipográfica y cromática en los tres temas.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H5</span>
+              <div class="heuristic-text">
+                <strong>Prevención de errores</strong>
+                Los botones tienen estados <code>:hover</code> y <code>:focus</code> claros. Ninguna acción es destructiva.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H6</span>
+              <div class="heuristic-text">
+                <strong>Reconocer antes que recordar</strong>
+                Los iconos y etiquetas en la nav y los botones de tema reducen la carga cognitiva del usuario.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H7</span>
+              <div class="heuristic-text">
+                <strong>Flexibilidad y eficiencia</strong>
+                El skip link acelera la navegación para usuarios expertos. Los anclajes permiten ir directamente a cada bloque.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H8</span>
+              <div class="heuristic-text">
+                <strong>Diseño estético y minimalista</strong>
+                Cada sección tiene un único foco visual. No hay información redundante. Los espacios en blanco actúan como respiraderos.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H9</span>
+              <div class="heuristic-text">
+                <strong>Ayuda a reconocer errores</strong>
+                Los botones no funcionales de demo están etiquetados como "Ejemplo". No se generan estados de error sin retroalimentación.
+              </div>
+            </div>
+
+            <div class="heuristic-item" role="listitem">
+              <span class="heuristic-num" aria-hidden="true">H10</span>
+              <div class="heuristic-text">
+                <strong>Ayuda y documentación</strong>
+                Cada concepto técnico incluye una descripción breve. Los fragmentos de código están comentados.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- /main -->
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <p>
+        <strong>DIG · Proyecto Final de Asignatura</strong><br>
+        Percepción y Evolución en la Interfaz Web<br>
+        HTML semántico · CSS avanzado · Gestalt · Accesibilidad WCAG 2.1
+      </p>
+      <p style="margin-top:1rem;">
+        Creado con <span aria-label="amor">♥</span> sin imágenes externas en el Bloque I ·
+        Fecha de entrega: <time datetime="2025-04-14">14 de abril de 2025</time>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       JAVASCRIPT – Theme switcher
+  ══════════════════════════════════════════════════════ -->
+  <script>
+    /**
+     * setTheme – conmuta el atributo data-theme en <html>
+     * y actualiza el estado aria-pressed de los botones.
+     * @param {string} theme  'light' | 'dark' | 'contrast'
+     */
+    function setTheme(theme) {
+      // Aplicar tema al documento
+      document.documentElement.setAttribute('data-theme', theme);
+
+      // Actualizar estado activo de los botones (aria-pressed + clase CSS)
+      document.querySelectorAll('.theme-btn').forEach(function(btn) {
+        const isActive = btn.getAttribute('data-theme-target') === theme;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+
+      // Guardar preferencia en sessionStorage (sin localStorage por restricciones)
+      try { sessionStorage.setItem('dig-theme', theme); } catch(e) {}
+    }
+
+    // Restaurar tema guardado al cargar
+    (function() {
+      try {
+        const saved = sessionStorage.getItem('dig-theme');
+        if (saved) setTheme(saved);
+      } catch(e) {}
+    })();
+  </script>
+
+</body>
+</html>
