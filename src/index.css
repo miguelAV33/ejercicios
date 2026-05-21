@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --bg:        #080810;
+  --s1:        #0F0F1A;
+  --s2:        #161624;
+  --s3:        #1E1E2E;
+  --s4:        #28283C;
+  --fog:       #5A5A78;
+  --mist:      #8888A8;
+  --smoke:     #AAAAC0;
+  --white:     #F0EFFE;
+
+  --lime:      #CAFF5A;
+  --lime-glow: rgba(202,255,90,0.18);
+  --coral:     #FF5C3A;
+  --coral-glow:rgba(255,92,58,0.18);
+  --sky:       #5AEFFF;
+  --sky-glow:  rgba(90,239,255,0.15);
+  --gold:      #FFD25A;
+  --violet:    #BF7AFF;
+
+  --r:    16px;
+  --rsm:  10px;
+  --rxs:  7px;
+
+  --f-display: 'Instrument Serif', Georgia, serif;
+  --f-ui:      'Syne', system-ui, sans-serif;
+  --f-mono:    'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--f-ui);
+  background: var(--bg);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+button, input, select, textarea { font-family: inherit; }
+::selection { background: var(--lime); color: var(--bg); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--s1); }
+::-webkit-scrollbar-thumb { background: var(--s3); border-radius: 4px; }

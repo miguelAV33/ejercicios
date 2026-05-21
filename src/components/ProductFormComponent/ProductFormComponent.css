@@ -1,0 +1,140 @@
+.form-section { margin-bottom: 1.5rem; }
+
+/* Collapsed trigger */
+.form-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--s1);
+  border: 1px dashed rgba(255,255,255,0.14);
+  border-radius: var(--r);
+  color: var(--fog);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+.form-trigger:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+  background: var(--lime-glow);
+}
+.trigger-plus {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.trigger-plus svg { width: 12px; height: 12px; }
+.trigger-label { font-size: 14px; font-weight: 600; flex: 1; }
+.trigger-hint {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  background: var(--s3);
+  padding: 3px 8px;
+  border-radius: 5px;
+  color: var(--fog);
+  flex-shrink: 0;
+}
+
+/* Expanded card */
+.form-card {
+  background: var(--s1);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r);
+  padding: 1.5rem;
+  transition: box-shadow 0.15s;
+}
+.form-card.flash { box-shadow: 0 0 0 2px var(--lime), 0 0 30px var(--lime-glow); }
+
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.flex1 { flex: 1; }
+
+.field-row-label { display: flex; align-items: center; justify-content: space-between; }
+
+.flabel { font-size: 12px; font-weight: 700; color: var(--fog); text-transform: uppercase; letter-spacing: 0.07em; }
+.req { color: var(--coral); margin-left: 3px; }
+.opt { font-weight: 400; color: var(--s4); text-transform: none; font-size: 11px; }
+
+.close-btn {
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--s2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--fog);
+  transition: all 0.15s; padding: 0;
+}
+.close-btn svg { width: 10px; height: 10px; }
+.close-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+
+.finput, .ftextarea {
+  background: var(--s2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--rsm);
+  padding: 10px 13px;
+  color: var(--white);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+.finput::placeholder, .ftextarea::placeholder { color: var(--s4); }
+.finput:hover, .ftextarea:hover { border-color: rgba(255,255,255,0.18); }
+.finput:focus, .ftextarea:focus { border-color: var(--lime); box-shadow: 0 0 0 3px var(--lime-glow); }
+.finput.invalid { border-color: var(--coral); box-shadow: 0 0 0 3px var(--coral-glow); }
+.ftextarea { resize: none; line-height: 1.5; }
+.ferror { font-size: 12px; color: var(--coral); }
+
+.form-row { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+
+/* Priority selector */
+.prio-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+}
+.prio-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: var(--rxs);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--s2);
+  color: var(--fog);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+}
+.prio-dot-btn { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.prio-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
+.prio-btn.active {
+  border-color: var(--pcolor);
+  background: rgba(var(--pcolor-rgb, 255,255,255), 0.1);
+  color: var(--white);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pcolor) 40%, transparent);
+}
+
+/* Submit */
+.fsubmit {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px;
+  background: var(--lime);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--rsm);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: opacity 0.15s;
+}
+.fsubmit svg { width: 14px; height: 14px; }
+.fsubmit:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
